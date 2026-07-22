@@ -3,9 +3,294 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DSA Interview Vault</title>
+<title>Aptitude & Verbal Ability — Cheat Sheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
+    --navy: #1F3864;
+    --navy-soft: #2c4a7c;
+    --bg: #fbfbfa;
+    --panel: #ffffff;
+    --border: #e4e2dc;
+    --text: #1c1f24;
+    --muted: #595959;
+    --trick: #444444;
+    --worked: #0F6B5C;
+    --code-bg: #f2f2f0;
+    --serif: 'Source Serif 4', Georgia, serif;
+    --sans: 'Inter', sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+    --sidebar-w: 280px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; font-size: 15px; line-height: 1.6; }
+
+  /* ---- Layout (scoped to #page-cheatsheet so nothing leaks into the DSA Vault) ---- */
+  #page-cheatsheet {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  #page-cheatsheet .app { display: flex; min-height: 100vh; }
+
+  #page-cheatsheet .sidebar {
+    width: var(--sidebar-w);
+    flex-shrink: 0;
+    background: var(--panel);
+    border-right: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    padding: 20px 0 40px;
+  }
+  #page-cheatsheet .sidebar-header {
+    padding: 4px 20px 16px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 12px;
+  }
+  #page-cheatsheet .sidebar-title {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--navy);
+    margin: 0 0 10px;
+  }
+  #page-cheatsheet #toc-search {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-family: var(--sans);
+    font-size: 12.5px;
+    outline: none;
+    background: var(--bg);
+    color: var(--text);
+  }
+  #page-cheatsheet #toc-search:focus { border-color: var(--navy-soft); }
+
+  #page-cheatsheet nav.toc { padding: 0 10px; }
+  #page-cheatsheet .toc-part { margin-bottom: 4px; }
+  #page-cheatsheet .toc-part-label {
+    display: block;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--navy);
+    padding: 8px 10px;
+    border-radius: 6px;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  #page-cheatsheet .toc-part-label:hover { background: var(--code-bg); }
+  #page-cheatsheet .toc-sub {
+    list-style: none;
+    margin: 0 0 6px;
+    padding: 0 0 0 14px;
+    border-left: 1px solid var(--border);
+    margin-left: 14px;
+  }
+  #page-cheatsheet .toc-sub li a {
+    display: block;
+    font-size: 12px;
+    color: var(--muted);
+    text-decoration: none;
+    padding: 4px 10px;
+    border-radius: 5px;
+    line-height: 1.4;
+  }
+  #page-cheatsheet .toc-sub li a:hover { background: var(--code-bg); color: var(--text); }
+  #page-cheatsheet .toc-sub li a.active { color: var(--navy); font-weight: 600; background: #eef2f8; }
+  #page-cheatsheet .toc-hidden { display: none !important; }
+
+  #page-cheatsheet .content {
+    flex: 1;
+    min-width: 0;
+    padding: 48px 56px 120px;
+    max-width: 900px;
+  }
+
+  /* ---- Title block ---- */
+  #page-cheatsheet .doc-title { margin-bottom: 8px; }
+  #page-cheatsheet .eyebrow {
+    font-family: var(--mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--navy-soft);
+    margin: 0 0 6px;
+  }
+  #page-cheatsheet h1.main-title {
+    font-family: var(--serif);
+    font-size: 38px;
+    font-weight: 700;
+    color: var(--navy);
+    margin: 0 0 6px;
+    letter-spacing: -0.01em;
+  }
+  #page-cheatsheet .content > p:first-of-type em {
+    color: var(--muted);
+    font-size: 15px;
+  }
+
+  /* ---- Headings ---- */
+  #page-cheatsheet h1 {
+    font-family: var(--serif);
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--navy);
+    margin: 56px 0 18px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    scroll-margin-top: 24px;
+  }
+  #page-cheatsheet .app .content > h1:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
+  #page-cheatsheet h3 {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--navy);
+    margin: 30px 0 10px;
+    scroll-margin-top: 24px;
+  }
+
+  #page-cheatsheet p { margin: 0 0 12px; }
+  #page-cheatsheet ul { margin: 0 0 14px; padding-left: 22px; }
+  #page-cheatsheet li { margin-bottom: 6px; }
+  #page-cheatsheet li p { margin: 0; }
+  #page-cheatsheet li strong { color: var(--navy); }
+  #page-cheatsheet strong { font-weight: 600; }
+
+  /* ---- Callouts ---- */
+  #page-cheatsheet .formula {
+    background: var(--code-bg);
+    border-left: 3px solid var(--navy-soft);
+    padding: 10px 14px;
+    border-radius: 0 6px 6px 0;
+    margin: 4px 0 16px;
+  }
+  #page-cheatsheet .formula em {
+    font-family: var(--mono);
+    font-style: normal;
+    font-size: 13.5px;
+    color: #33363b;
+  }
+  #page-cheatsheet .callout.trick em, #page-cheatsheet .callout.worked em {
+    font-style: italic;
+    font-size: 13.5px;
+  }
+  #page-cheatsheet .callout.trick { color: var(--trick); margin: 4px 0 16px; }
+  #page-cheatsheet .callout.worked { color: #333; margin: 8px 0 18px; }
+  #page-cheatsheet .callout-label {
+    font-weight: 700;
+    font-style: normal !important;
+  }
+  #page-cheatsheet .callout.trick .callout-label { color: var(--trick); }
+  #page-cheatsheet .callout.worked .callout-label { color: var(--worked); }
+
+  /* ---- Tables ---- */
+  #page-cheatsheet table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 6px 0 18px;
+    font-size: 13.5px;
+  }
+  #page-cheatsheet thead tr.header th {
+    background: var(--navy);
+    color: #fff;
+    text-align: left;
+    padding: 9px 12px;
+    font-weight: 600;
+  }
+  #page-cheatsheet td { padding: 9px 12px; border: 1px solid var(--border); vertical-align: top; }
+  #page-cheatsheet th { border: 1px solid var(--navy); }
+  #page-cheatsheet tbody tr:nth-child(even) { background: #f7f8f9; }
+
+  #page-cheatsheet code {
+    font-family: var(--mono);
+    background: var(--code-bg);
+    padding: 1px 5px;
+    border-radius: 4px;
+    font-size: 0.92em;
+    color: var(--text);
+  }
+
+  #page-cheatsheet a { color: var(--navy-soft); }
+
+  /* mobile */
+  #page-cheatsheet .menu-toggle { display: none; }
+  @media (max-width: 900px) {
+    #page-cheatsheet .sidebar {
+      position: fixed;
+      left: -300px;
+      top: 0;
+      z-index: 30;
+      transition: left 0.2s ease;
+      box-shadow: 2px 0 12px rgba(0,0,0,0.08);
+    }
+    #page-cheatsheet .sidebar.open { left: 0; }
+    #page-cheatsheet .content { padding: 64px 20px 100px; }
+    #page-cheatsheet .menu-toggle {
+      display: block;
+      position: fixed;
+      top: 14px;
+      left: 14px;
+      z-index: 40;
+      background: var(--navy);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-family: var(--mono);
+      font-size: 13px;
+      cursor: pointer;
+    }
+  }
+
+  @media print {
+    #page-cheatsheet .sidebar, #page-cheatsheet .menu-toggle { display: none !important; }
+    #page-cheatsheet .content { max-width: 100%; padding: 0; }
+    #page-cheatsheet h1 { break-before: page; }
+    #page-cheatsheet .app .content > h1:first-of-type { break-before: avoid; }
+  }
+
+  /* ---- Site top nav (mode switcher) ---- */
+  .site-nav {
+    display: flex;
+    gap: 0;
+    background: #14181f;
+    border-bottom: 1px solid #232b36;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+  .site-nav-btn {
+    flex: 0 0 auto;
+    padding: 14px 22px;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: #8b98a8;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    cursor: pointer;
+    transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+  }
+  .site-nav-btn:hover { color: #e6edf3; background: rgba(255,255,255,0.03); }
+  .site-nav-btn.active { color: #fff; border-bottom-color: #5fd9a4; }
+  #page-cheatsheet, #page-dsavault { min-height: calc(100vh - 47px); }
+  #page-dsavault.hidden, #page-cheatsheet.hidden { display: none !important; }
+
+  /* ==== DSA_Vault component (scoped to #dsa-vault-root) ==== */
+
+  #dsa-vault-root {
     --bg: #0d1117;
     --panel: #11161d;
     --panel-hover: #161c25;
@@ -21,14 +306,14 @@
     --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   }
   * { box-sizing: border-box; }
-  html, body {
+  #dsa-vault-root {
     margin: 0; padding: 0;
     background: var(--bg);
     color: var(--text);
     font-family: var(--sans);
     -webkit-font-smoothing: antialiased;
   }
-  body { overflow-x: hidden; }
+  #dsa-vault-root { overflow-x: hidden; }
   .wrap { max-width: 980px; margin: 0 auto; padding: 28px 20px 80px; }
 
   .hero {
@@ -346,9 +631,1550 @@
       margin-top: -2px;
     }
   }
+
 </style>
 </head>
 <body>
+
+<nav class="site-nav">
+  <button class="site-nav-btn active" data-page="cheatsheet">📘 Aptitude Cheat Sheet</button>
+  <button class="site-nav-btn" data-page="dsavault">💻 DSA Pattern Vault</button>
+</nav>
+<section id="page-cheatsheet">
+<button class="menu-toggle" id="menu-toggle">☰ Menu</button>
+<div class="app">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <p class="sidebar-title">Cheat Sheet Index</p>
+      <input type="text" id="toc-search" placeholder="Filter sections...">
+    </div>
+    <nav class="toc" id="toc"></nav>
+  </aside>
+  <main class="content" id="content">
+<div class="doc-title"><p class="eyebrow">Cheat Sheet</p><h1 class="main-title">Aptitude &amp; Verbal Ability</h1></div>
+<p class="formula"><em>Full-syllabus quick reference: formulas, patterns, tricks, and worked examples for aptitude and verbal reasoning.</em></p>
+<h1 id="part-1-quantitative-aptitude">Part 1 — Quantitative Aptitude</h1>
+<h3 id="1-mixtures-amp-alligation">1. Mixtures &amp; Alligation</h3>
+<ul>
+<li><p><strong>Adding pure liquid to a mixture:</strong> New % = (existing substance qty + added pure qty) ÷ new total volume × 100</p></li>
+<li><p><strong>Replacement method:</strong> track water/milk separately — Final conc. = Initial conc. × (1 − removed fraction) per round</p></li>
+<li><p><strong>Ratio target problems:</strong> set up water : (milk + x) = target ratio and solve for x</p></li>
+<li><p><strong>Trick:</strong> always find the actual quantity of the ingredient first (% × total), not just the percentage</p></li>
+</ul>
+<h3 id="2-profit-amp-loss">2. Profit &amp; Loss</h3>
+<table>
+<colgroup>
+<col style="width: 45%" />
+<col style="width: 54%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Concept</strong></th>
+<th><strong>Formula</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Selling Price</td>
+<td>SP = CP + Profit (or CP − Loss)</td>
+</tr>
+<tr class="even">
+<td>Marked Price w/ discount</td>
+<td>SP = MP × (1 − discount%)</td>
+</tr>
+<tr class="odd">
+<td>% Profit / Loss</td>
+<td>(SP − CP)/CP × 100</td>
+</tr>
+<tr class="even">
+<td>Two articles, same SP, +p% / −q%</td>
+<td>CP = SP/(1 ± %) per article; sum CPs vs sum SPs</td>
+</tr>
+<tr class="odd">
+<td>No gain/no loss, two articles</td>
+<td>loss% × CP1 = profit% × CP2 → gives CP ratio</td>
+</tr>
+</tbody>
+</table>
+<p class="callout trick"><em><span class="callout-label">Trick:</span> when “sold at same price”, never average the % directly — convert each to CP using SP/(1 ± %), then compare totals.</em></p>
+<p class="formula"><em>Quick ratio trick: if loss% on article 1 = profit% on article 2, then CP1 : CP2 = profit% : loss% (inverse of the rates).</em></p>
+<h3 id="3-time-amp-work">3. Time &amp; Work</h3>
+<ul>
+<li><p><strong>Rate = 1/days.</strong> Combined rate = sum of individual rates. Time = 1/(combined rate).</p></li>
+<li><p><strong>Partial work handover:</strong> work done by A in t days = t/(A's total days); remaining = 1 − that; time for B = remaining ÷ B's rate</p></li>
+<li><p><strong>Pair-sum trick (A+B, B+C, C+A given):</strong> add all three pair rates, divide by 2 to get A+B+C rate → time = 1/(A+B+C)</p></li>
+<li><p><strong>Find one worker alone:</strong> third's rate = (A+B+C rate) − (known rates)</p></li>
+</ul>
+<h3 id="4-speed-time-amp-distance">4. Speed, Time &amp; Distance</h3>
+<table>
+<colgroup>
+<col style="width: 45%" />
+<col style="width: 54%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Situation</strong></th>
+<th><strong>Formula</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Basic</td>
+<td>Speed = Distance / Time</td>
+</tr>
+<tr class="even">
+<td>km/h → m/s</td>
+<td>× 5/18</td>
+</tr>
+<tr class="odd">
+<td>m/s → km/h</td>
+<td>× 18/5</td>
+</tr>
+<tr class="even">
+<td>Average speed (different speeds)</td>
+<td>Total Distance ÷ Total Time (not simple average)</td>
+</tr>
+<tr class="odd">
+<td>Train passing a stationary point/man</td>
+<td>Time = Train length ÷ Speed</td>
+</tr>
+<tr class="even">
+<td>Train crossing a bridge/platform</td>
+<td>Time = (Train length + Bridge length) ÷ Speed</td>
+</tr>
+<tr class="odd">
+<td>Two platforms, find train length</td>
+<td>(L+P1)/T1 = (L+P2)/T2, solve for L</td>
+</tr>
+<tr class="even">
+<td>Extra distance if speed increased</td>
+<td>(New speed − Old speed) × time = extra distance</td>
+</tr>
+<tr class="odd">
+<td>Mixed foot + vehicle speed</td>
+<td>x/speed1 + (total − x)/speed2 = total time</td>
+</tr>
+</tbody>
+</table>
+<p class="callout trick"><em><span class="callout-label">Trick:</span> never average two speeds unless time (not distance) is equal on each leg.</em></p>
+<h3 id="5-simple-interest">5. Simple Interest</h3>
+<p class="formula"><em>SI = (Principal × Rate × Time) / 100</em></p>
+<h3 id="6-ratio-amp-average">6. Ratio &amp; Average</h3>
+<p class="formula"><em>Average = Sum of values / Number of values</em></p>
+<p>For perimeter/geometry mixed with ratios: use the given formula (e.g., 2(l+b) = Perimeter) and substitute.</p>
+<h3 id="7-number-series-patterns-to-test-first">7. Number Series — Patterns to Test First</h3>
+<ol type="1">
+<li><p>Constant difference (arithmetic): check if consecutive differences are equal</p></li>
+<li><p>Constant/increasing multiplier (×1.5, ×2.5, ×3.5…): check ratios between terms</p></li>
+<li><p>Multiply-then-subtract/add pattern (×3 −2, ×3 −2…): check if repeating the operation fits</p></li>
+<li><p>Increasing difference (+5, +7, +9, +11…): common in difficulty-scaling series</p></li>
+<li><p>Simple constant addition: differences all equal</p></li>
+</ol>
+<p class="formula"><em>Approach: compute the difference row first, then the ratio row if differences aren't constant.</em></p>
+<h3 id="8-odd-one-out-reasoning">8. Odd One Out — Reasoning</h3>
+<ul>
+<li><p><strong>Letter pairs:</strong> check the alphabetical gap between letters — one pair breaks the common gap</p></li>
+<li><p><strong>Three-letter groups:</strong> check if the middle letter = average position of first &amp; last</p></li>
+<li><p><strong>Word groups:</strong> classify by category (planet vs satellite, carnivore vs herbivore, tool vs wearable)</p></li>
+</ul>
+<h3 id="9-cube-problems">9. Cube Problems</h3>
+<p>Cube of side n, cut into n³ smaller cubes, painted on all outer faces:</p>
+<table>
+<colgroup>
+<col style="width: 39%" />
+<col style="width: 39%" />
+<col style="width: 21%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Cubes with...</strong></th>
+<th><strong>Formula</strong></th>
+<th><strong>n = 4 (64 cubes)</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>3 faces coloured (corners)</td>
+<td>Always 8</td>
+<td>8</td>
+</tr>
+<tr class="even">
+<td>2 faces coloured (edges)</td>
+<td>12 × (n−2)</td>
+<td>24</td>
+</tr>
+<tr class="odd">
+<td>1 face coloured (face centers)</td>
+<td>6 × (n−2)²</td>
+<td>24</td>
+</tr>
+<tr class="even">
+<td>0 faces coloured (inner core)</td>
+<td>(n−2)³</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+<p class="formula"><em>Memorize this table pattern for any n — it's the most reused cube-problem shortcut.</em></p>
+<h3 id="10-percentages">10. Percentages</h3>
+<p class="formula"><em>Value = (Percentage / 100) × Total %Change = (New − Old)/Old × 100</em></p>
+<ul>
+<li><p><strong>Successive % changes:</strong> Net% = a + b + (ab/100). E.g. +20 then −10 → 8% net increase</p></li>
+<li><p><strong>Reverse % trick:</strong> if A is x% more than B, then B is [x/(100+x)]×100 % less than A</p></li>
+</ul>
+<p class="callout worked"><em><span class="callout-label">Worked example:</span> A's salary is 25% more than B's → B is less by [25/125]×100 = 20%.</em></p>
+<h3 id="11-compound-interest-vs-simple-interest">11. Compound Interest (vs Simple Interest)</h3>
+<p class="formula"><em>CI = P(1 + R/100)ⁿ − P For 2 yrs: CI − SI = P × (R/100)²</em></p>
+<p>Half-yearly compounding: use R/2 as rate and 2n as time periods.</p>
+<p class="callout worked"><em><span class="callout-label">Worked example:</span> P=₹10,000, R=10%, T=2 yrs → SI=₹2,000; CI=12,100−10,000=₹2,100; difference=₹100=P×(R/100)².</em></p>
+<h3 id="12-boats-amp-streams">12. Boats &amp; Streams</h3>
+<table>
+<colgroup>
+<col style="width: 45%" />
+<col style="width: 54%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Situation</strong></th>
+<th><strong>Formula</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Downstream speed</td>
+<td>Boat speed + Stream speed</td>
+</tr>
+<tr class="even">
+<td>Upstream speed</td>
+<td>Boat speed − Stream speed</td>
+</tr>
+<tr class="odd">
+<td>Boat speed in still water</td>
+<td>(Downstream + Upstream) / 2</td>
+</tr>
+<tr class="even">
+<td>Stream speed</td>
+<td>(Downstream − Upstream) / 2</td>
+</tr>
+</tbody>
+</table>
+<p class="callout worked"><em><span class="callout-label">Worked example:</span> Downstream 14 km/h, upstream 8 km/h → boat speed = 11 km/h, stream = 3 km/h.</em></p>
+<h3 id="13-pipes-amp-cisterns">13. Pipes &amp; Cisterns</h3>
+<p>Same logic as Time &amp; Work — outlet pipes count as negative rate.</p>
+<ul>
+<li><p>Filling pipe rate = +1/time; emptying/leak pipe rate = −1/time</p></li>
+<li><p>Combined rate = sum of all rates; Time to fill = 1/combined rate</p></li>
+</ul>
+<p class="callout worked"><em><span class="callout-label">Worked example:</span> A fills in 6 hrs, B empties in 8 hrs, both open: rate = 1/6−1/8 = 1/24 → fills in 24 hrs.</em></p>
+<h3 id="14-problems-on-ages">14. Problems on Ages</h3>
+<ul>
+<li><p>“5 years ago” → (age − 5); “in 10 years” → (age + 10)</p></li>
+<li><p>Set present ages as variables, form 2 equations, solve simultaneously</p></li>
+</ul>
+<p class="callout worked"><em><span class="callout-label">Worked example:</span> Father = 3× son now; after 5 yrs, father = 2.5× son → son=15, father=45.</em></p>
+<h3 id="15-calendars">15. Calendars</h3>
+<ul>
+<li><p>Odd days: ordinary year = 1, leap year = 2. 100 yrs = 5, 200 yrs = 3, 300 yrs = 1, 400 yrs = 0</p></li>
+<li><p>Odd days → weekday: 0=Sun, 1=Mon, 2=Tue, 3=Wed, 4=Thu, 5=Fri, 6=Sat</p></li>
+<li><p>Leap year: divisible by 4, but century years must be divisible by 400</p></li>
+</ul>
+<h3 id="16-clocks">16. Clocks</h3>
+<ul>
+<li><p>Minute hand: 6°/min; Hour hand: 0.5°/min</p></li>
+</ul>
+<p class="formula"><em>Angle at H:M = |(30×H) − (5.5×M)| degrees</em></p>
+<ul>
+<li><p>Hands coincide every 65 5/11 minutes</p></li>
+</ul>
+<p class="callout worked"><em><span class="callout-label">Worked example:</span> Angle at 3:40 = |90 − 220| = 130°.</em></p>
+<h3 id="17-permutations-amp-combinations">17. Permutations &amp; Combinations</h3>
+<p class="formula"><em>nPr = n!/(n−r)! (order matters) nCr = n!/[r!(n−r)!] (order doesn't matter)</em></p>
+<ul>
+<li><p>n distinct items in a row: n!. With repeats: n!/(p!q!...)</p></li>
+<li><p>Circular arrangement: (n−1)!, or (n−1)!/2 if clockwise = anticlockwise</p></li>
+</ul>
+<p class="callout worked"><em><span class="callout-label">Worked example:</span> Select 3 from 6 → 6C3 = 6!/(3!3!) = 20.</em></p>
+<h3 id="18-probability">18. Probability</h3>
+<p class="formula"><em>P(event) = Favourable outcomes / Total outcomes</em></p>
+<ul>
+<li><p>P(A or B) = P(A) + P(B) − P(A and B) [drop last term if mutually exclusive]</p></li>
+<li><p>P(A and B), independent = P(A) × P(B) P(not A) = 1 − P(A)</p></li>
+</ul>
+<p class="callout worked"><em><span class="callout-label">Worked example:</span> Card drawn from 52: P(king or queen) = 4/52 + 4/52 = 2/13.</em></p>
+<h3 id="19-data-interpretation">19. Data Interpretation</h3>
+<ul>
+<li><p>Read the units/scale first — common trap is misreading “in thousands” or “in %”</p></li>
+<li><p>Pie charts: Value = (Sector angle/360) × Total, or (Sector %/100) × Total</p></li>
+<li><p>DI is rarely conceptually hard — it's a speed test; practice fast mental %/ratio calculation</p></li>
+</ul>
+<h3 id="20-races-amp-games-of-skill">20. Races &amp; Games of Skill</h3>
+<ul>
+<li><p>“A gives B a start of x m” in a race of d m → A runs d, B runs (d−x) in the same time</p></li>
+<li><p>“A beats B by x m” → when A finishes d, B has covered (d−x)</p></li>
+</ul>
+<h3 id="21-hcf-amp-lcm">21. HCF &amp; LCM</h3>
+<p class="formula"><em>HCF × LCM = Product of the two numbers (for exactly 2 numbers)</em></p>
+<ul>
+<li><p>“Largest tile/container size” → HCF. “When events coincide again” → LCM</p></li>
+</ul>
+<h3 id="22-number-system">22. Number System</h3>
+<ul>
+<li><p>Divisibility: 2 (last digit even), 3 (digit sum ÷3), 4 (last 2 digits ÷4), 5 (ends 0/5), 9 (digit sum ÷9), 11 (alternating sum diff ÷11)</p></li>
+</ul>
+<p class="formula"><em>Sum of first n naturals = n(n+1)/2 Sum of squares = n(n+1)(2n+1)/6</em></p>
+<h3 id="23-partnership">23. Partnership</h3>
+<p>Profit is divided in the ratio of (Investment × Time period) for each partner, not investment alone.</p>
+<p class="callout worked"><em><span class="callout-label">Worked example:</span> A invests ₹5,000×12mo, B invests ₹7,500×8mo → ratio 60000:60000 = 1:1 → equal split.</em></p>
+<h3 id="24-basic-algebra-quadratic-equations">24. Basic Algebra / Quadratic Equations</h3>
+<p class="formula"><em>x = [−b ± √(b² − 4ac)] / 2a for ax² + bx + c = 0</em></p>
+<ul>
+<li><p>Sum of roots = −b/a; Product of roots = c/a — useful for fast MCQ elimination</p></li>
+</ul>
+<h3 id="25-mensuration-areas-amp-volumes">25. Mensuration (Areas &amp; Volumes)</h3>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 26%" />
+<col style="width: 28%" />
+<col style="width: 21%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Shape</strong></th>
+<th><strong>Area</strong></th>
+<th><strong>Perimeter / Surface</strong></th>
+<th><strong>Volume</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Rectangle</td>
+<td>l×b</td>
+<td>2(l+b)</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>Square</td>
+<td>a²</td>
+<td>4a</td>
+<td>—</td>
+</tr>
+<tr class="odd">
+<td>Triangle</td>
+<td>½×base×height</td>
+<td>sum of sides</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>Circle</td>
+<td>πr²</td>
+<td>2πr</td>
+<td>—</td>
+</tr>
+<tr class="odd">
+<td>Cube</td>
+<td>6a² (surface)</td>
+<td>—</td>
+<td>a³</td>
+</tr>
+<tr class="even">
+<td>Cuboid</td>
+<td>2(lb+bh+hl)</td>
+<td>—</td>
+<td>l×b×h</td>
+</tr>
+<tr class="odd">
+<td>Cylinder</td>
+<td>2πr(r+h)</td>
+<td>—</td>
+<td>πr²h</td>
+</tr>
+<tr class="even">
+<td>Sphere</td>
+<td>4πr²</td>
+<td>—</td>
+<td>(4/3)πr³</td>
+</tr>
+</tbody>
+</table>
+<h1 id="part-2-verbal-ability">Part 2 — Verbal Ability</h1>
+<h3 id="tcs-section-snapshot">TCS Section Snapshot</h3>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 36%" />
+<col style="width: 21%" />
+<col style="width: 21%" />
+<col style="width: 19%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Topic</strong></th>
+<th><strong>Typical Qs</strong></th>
+<th><strong>Difficulty</strong></th>
+<th><strong>Importance</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Passage Ordering</td>
+<td>0–2</td>
+<td>High</td>
+<td>High</td>
+</tr>
+<tr class="even">
+<td>Synonym &amp; Antonym</td>
+<td>0–4</td>
+<td>High</td>
+<td>High</td>
+</tr>
+<tr class="odd">
+<td>Cloze Test</td>
+<td>0–2</td>
+<td>Medium</td>
+<td>High</td>
+</tr>
+<tr class="even">
+<td>Grammar</td>
+<td>0–3</td>
+<td>High</td>
+<td>Medium</td>
+</tr>
+<tr class="odd">
+<td>Reading Comprehension</td>
+<td>0–2</td>
+<td>High</td>
+<td>High</td>
+</tr>
+<tr class="even">
+<td>Error Identification</td>
+<td>0–1</td>
+<td>High</td>
+<td>High</td>
+</tr>
+<tr class="odd">
+<td>Error Correction</td>
+<td>0–3</td>
+<td>Medium</td>
+<td>High</td>
+</tr>
+<tr class="even">
+<td>Sentence Completion</td>
+<td>0–2</td>
+<td>Medium</td>
+<td>High</td>
+</tr>
+<tr class="odd">
+<td>Selecting Words</td>
+<td>0–1</td>
+<td>Medium</td>
+<td>Medium</td>
+</tr>
+<tr class="even">
+<td>Spelling</td>
+<td>0–2</td>
+<td>Medium</td>
+<td>Medium</td>
+</tr>
+</tbody>
+</table>
+<p class="formula"><em>~25 questions in 25 minutes — roughly 1 minute/question. Answer vocabulary (synonym/antonym) fastest to bank time for passages and grammar.</em></p>
+<h3 id="grammar-rules-high-yield">Grammar Rules (High-Yield)</h3>
+<ul>
+<li><p><strong>Subject-verb agreement:</strong> singular subject → singular verb (she goes); “Each” always takes singular verb (each... has)</p></li>
+<li><p><strong>Modal + base verb:</strong> after did/does/can/should, use base form (did not know, not knew)</p></li>
+<li><p><strong>Tag questions:</strong> positive statement → negative tag (isn't it?); negative → positive tag</p></li>
+<li><p><strong>Indirect speech:</strong> present continuous → past continuous (“I am eating” → he said he was eating)</p></li>
+<li><p><strong>Passive voice:</strong> match tense — past simple active → was/were + past participle (built → was built)</p></li>
+<li><p><strong>Future perfect:</strong> “By [future time], I ___” → will have + past participle</p></li>
+<li><p><strong>Prepositions:</strong> between = two people/things; among = more than two</p></li>
+<li><p><strong>Fixed pairs:</strong> No sooner...than; So that (purpose); good at (not “good good”)</p></li>
+<li><p><strong>“It is high time”</strong> → followed by past tense, even though it refers to now</p></li>
+<li><p><strong>Articles (a/an/the):</strong> “a” before consonant sounds, “an” before vowel sounds (an hour, a university — sound, not spelling); “the” for specific/already-known nouns</p></li>
+<li><p><strong>Determiners:</strong> this/that/these/those (proximity), some/any (some in positive, any in negative/question), much (uncountable), many/few (countable), little (uncountable, almost none)</p></li>
+<li><p><strong>Pronoun agreement:</strong> pronoun must match its antecedent in number and gender — “Each student submitted their/his or her assignment” not “their” if strict singular is tested</p></li>
+<li><p><strong>Pronoun case:</strong> subject pronouns (I, he, she, they) do the action; object pronouns (me, him, her, them) receive it — “between you and me,” never “between you and I”</p></li>
+<li><p><strong>Parallelism:</strong> items joined by and/or/but must share the same grammatical form — “She likes reading, writing, and to swim” is wrong; should be “reading, writing, and swimming”</p></li>
+<li><p><strong>Modifiers:</strong> keep modifiers next to the word they describe — a misplaced modifier changes meaning (“She almost drove her kids to school every day” vs “She drove her kids to school almost every day”)</p></li>
+<li><p><strong>Conditional sentences:</strong> Zero (if + present, present — general truth); First (if + present, will + base — real future); Second (if + past, would + base — unreal present); Third (if + past perfect, would have + past participle — unreal past)</p></li>
+</ul>
+<h3 id="synonym-antonym-quick-list">Synonym / Antonym Quick List</h3>
+<table>
+<colgroup>
+<col style="width: 36%" />
+<col style="width: 30%" />
+<col style="width: 32%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Word</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Answer</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Abolish</td>
+<td>Synonym</td>
+<td>Cancel</td>
+</tr>
+<tr class="even">
+<td>Frugal</td>
+<td>Antonym</td>
+<td>Extravagant</td>
+</tr>
+<tr class="odd">
+<td>Lament</td>
+<td>Synonym</td>
+<td>Mourn</td>
+</tr>
+<tr class="even">
+<td>Humble</td>
+<td>Antonym</td>
+<td>Proud</td>
+</tr>
+<tr class="odd">
+<td>Vanish</td>
+<td>Synonym</td>
+<td>Disappear</td>
+</tr>
+<tr class="even">
+<td>Scarce</td>
+<td>Antonym</td>
+<td>Abundant</td>
+</tr>
+<tr class="odd">
+<td>Brave</td>
+<td>Synonym</td>
+<td>Bold</td>
+</tr>
+<tr class="even">
+<td>Complex</td>
+<td>Antonym</td>
+<td>Simple</td>
+</tr>
+<tr class="odd">
+<td>Conceal</td>
+<td>Synonym</td>
+<td>Hide</td>
+</tr>
+<tr class="even">
+<td>Generosity</td>
+<td>Antonym</td>
+<td>Meanness</td>
+</tr>
+<tr class="odd">
+<td>Eager</td>
+<td>Synonym</td>
+<td>Interested</td>
+</tr>
+<tr class="even">
+<td>Success</td>
+<td>Antonym</td>
+<td>Failure</td>
+</tr>
+<tr class="odd">
+<td>Ambiguous</td>
+<td>Synonym</td>
+<td>Unclear</td>
+</tr>
+<tr class="even">
+<td>Candid</td>
+<td>Synonym</td>
+<td>Frank</td>
+</tr>
+<tr class="odd">
+<td>Diligent</td>
+<td>Synonym</td>
+<td>Hardworking</td>
+</tr>
+<tr class="even">
+<td>Eloquent</td>
+<td>Synonym</td>
+<td>Articulate</td>
+</tr>
+<tr class="odd">
+<td>Frivolous</td>
+<td>Synonym</td>
+<td>Trivial</td>
+</tr>
+<tr class="even">
+<td>Gregarious</td>
+<td>Synonym</td>
+<td>Sociable</td>
+</tr>
+<tr class="odd">
+<td>Hostile</td>
+<td>Synonym</td>
+<td>Antagonistic</td>
+</tr>
+<tr class="even">
+<td>Impartial</td>
+<td>Synonym</td>
+<td>Unbiased</td>
+</tr>
+<tr class="odd">
+<td>Jubilant</td>
+<td>Synonym</td>
+<td>Elated</td>
+</tr>
+<tr class="even">
+<td>Keen</td>
+<td>Synonym</td>
+<td>Enthusiastic</td>
+</tr>
+<tr class="odd">
+<td>Lethargic</td>
+<td>Synonym</td>
+<td>Sluggish</td>
+</tr>
+<tr class="even">
+<td>Meticulous</td>
+<td>Synonym</td>
+<td>Precise</td>
+</tr>
+<tr class="odd">
+<td>Naive</td>
+<td>Synonym</td>
+<td>Innocent</td>
+</tr>
+<tr class="even">
+<td>Obsolete</td>
+<td>Synonym</td>
+<td>Outdated</td>
+</tr>
+<tr class="odd">
+<td>Pragmatic</td>
+<td>Synonym</td>
+<td>Practical</td>
+</tr>
+<tr class="even">
+<td>Quaint</td>
+<td>Synonym</td>
+<td>Charming</td>
+</tr>
+<tr class="odd">
+<td>Resilient</td>
+<td>Synonym</td>
+<td>Tough</td>
+</tr>
+<tr class="even">
+<td>Skeptical</td>
+<td>Synonym</td>
+<td>Doubtful</td>
+</tr>
+<tr class="odd">
+<td>Tedious</td>
+<td>Synonym</td>
+<td>Monotonous</td>
+</tr>
+<tr class="even">
+<td>Vivid</td>
+<td>Synonym</td>
+<td>Bright</td>
+</tr>
+<tr class="odd">
+<td>Wary</td>
+<td>Synonym</td>
+<td>Cautious</td>
+</tr>
+<tr class="even">
+<td>Zealous</td>
+<td>Synonym</td>
+<td>Passionate</td>
+</tr>
+<tr class="odd">
+<td>Adept</td>
+<td>Synonym</td>
+<td>Skilled</td>
+</tr>
+<tr class="even">
+<td>Benevolent</td>
+<td>Synonym</td>
+<td>Kind</td>
+</tr>
+<tr class="odd">
+<td>Concise</td>
+<td>Synonym</td>
+<td>Brief</td>
+</tr>
+<tr class="even">
+<td>Diminish</td>
+<td>Synonym</td>
+<td>Decrease</td>
+</tr>
+<tr class="odd">
+<td>Enhance</td>
+<td>Synonym</td>
+<td>Improve</td>
+</tr>
+<tr class="even">
+<td>Fatigue</td>
+<td>Synonym</td>
+<td>Exhaustion</td>
+</tr>
+<tr class="odd">
+<td>Genuine</td>
+<td>Synonym</td>
+<td>Authentic</td>
+</tr>
+<tr class="even">
+<td>Hinder</td>
+<td>Synonym</td>
+<td>Obstruct</td>
+</tr>
+<tr class="odd">
+<td>Immense</td>
+<td>Synonym</td>
+<td>Huge</td>
+</tr>
+<tr class="even">
+<td>Justify</td>
+<td>Synonym</td>
+<td>Validate</td>
+</tr>
+<tr class="odd">
+<td>Kindle</td>
+<td>Synonym</td>
+<td>Ignite</td>
+</tr>
+<tr class="even">
+<td>Legitimate</td>
+<td>Synonym</td>
+<td>Valid</td>
+</tr>
+<tr class="odd">
+<td>Mundane</td>
+<td>Synonym</td>
+<td>Ordinary</td>
+</tr>
+<tr class="even">
+<td>Novice</td>
+<td>Synonym</td>
+<td>Beginner</td>
+</tr>
+<tr class="odd">
+<td>Optimum</td>
+<td>Synonym</td>
+<td>Best</td>
+</tr>
+<tr class="even">
+<td>Prudent</td>
+<td>Synonym</td>
+<td>Wise</td>
+</tr>
+<tr class="odd">
+<td>Quench</td>
+<td>Synonym</td>
+<td>Satisfy</td>
+</tr>
+<tr class="even">
+<td>Robust</td>
+<td>Synonym</td>
+<td>Strong</td>
+</tr>
+<tr class="odd">
+<td>Serene</td>
+<td>Synonym</td>
+<td>Calm</td>
+</tr>
+<tr class="even">
+<td>Tentative</td>
+<td>Synonym</td>
+<td>Provisional</td>
+</tr>
+<tr class="odd">
+<td>Unanimous</td>
+<td>Synonym</td>
+<td>Agreed</td>
+</tr>
+<tr class="even">
+<td>Vigilant</td>
+<td>Synonym</td>
+<td>Watchful</td>
+</tr>
+<tr class="odd">
+<td>Aggressive</td>
+<td>Antonym</td>
+<td>Passive</td>
+</tr>
+<tr class="even">
+<td>Benevolent</td>
+<td>Antonym</td>
+<td>Malevolent</td>
+</tr>
+<tr class="odd">
+<td>Cautious</td>
+<td>Antonym</td>
+<td>Reckless</td>
+</tr>
+<tr class="even">
+<td>Diligent</td>
+<td>Antonym</td>
+<td>Lazy</td>
+</tr>
+<tr class="odd">
+<td>Elaborate</td>
+<td>Antonym</td>
+<td>Simple</td>
+</tr>
+<tr class="even">
+<td>Flexible</td>
+<td>Antonym</td>
+<td>Rigid</td>
+</tr>
+<tr class="odd">
+<td>Genuine</td>
+<td>Antonym</td>
+<td>Fake</td>
+</tr>
+<tr class="even">
+<td>Hostile</td>
+<td>Antonym</td>
+<td>Friendly</td>
+</tr>
+<tr class="odd">
+<td>Innocent</td>
+<td>Antonym</td>
+<td>Guilty</td>
+</tr>
+<tr class="even">
+<td>Junior</td>
+<td>Antonym</td>
+<td>Senior</td>
+</tr>
+<tr class="odd">
+<td>Kind</td>
+<td>Antonym</td>
+<td>Cruel</td>
+</tr>
+<tr class="even">
+<td>Lenient</td>
+<td>Antonym</td>
+<td>Strict</td>
+</tr>
+<tr class="odd">
+<td>Major</td>
+<td>Antonym</td>
+<td>Minor</td>
+</tr>
+<tr class="even">
+<td>Neat</td>
+<td>Antonym</td>
+<td>Messy</td>
+</tr>
+<tr class="odd">
+<td>Optimistic</td>
+<td>Antonym</td>
+<td>Pessimistic</td>
+</tr>
+<tr class="even">
+<td>Permanent</td>
+<td>Antonym</td>
+<td>Temporary</td>
+</tr>
+<tr class="odd">
+<td>Rigid</td>
+<td>Antonym</td>
+<td>Flexible</td>
+</tr>
+<tr class="even">
+<td>Sparse</td>
+<td>Antonym</td>
+<td>Dense</td>
+</tr>
+<tr class="odd">
+<td>Timid</td>
+<td>Antonym</td>
+<td>Bold</td>
+</tr>
+<tr class="even">
+<td>Urban</td>
+<td>Antonym</td>
+<td>Rural</td>
+</tr>
+<tr class="odd">
+<td>Vague</td>
+<td>Antonym</td>
+<td>Precise</td>
+</tr>
+<tr class="even">
+<td>Wax</td>
+<td>Antonym</td>
+<td>Wane</td>
+</tr>
+<tr class="odd">
+<td>Ancient</td>
+<td>Antonym</td>
+<td>Modern</td>
+</tr>
+<tr class="even">
+<td>Bold</td>
+<td>Antonym</td>
+<td>Timid</td>
+</tr>
+<tr class="odd">
+<td>Cheerful</td>
+<td>Antonym</td>
+<td>Gloomy</td>
+</tr>
+<tr class="even">
+<td>Deficient</td>
+<td>Antonym</td>
+<td>Adequate</td>
+</tr>
+<tr class="odd">
+<td>Expand</td>
+<td>Antonym</td>
+<td>Contract</td>
+</tr>
+<tr class="even">
+<td>Fragile</td>
+<td>Antonym</td>
+<td>Sturdy</td>
+</tr>
+<tr class="odd">
+<td>Gather</td>
+<td>Antonym</td>
+<td>Scatter</td>
+</tr>
+<tr class="even">
+<td>Harsh</td>
+<td>Antonym</td>
+<td>Gentle</td>
+</tr>
+<tr class="odd">
+<td>Increase</td>
+<td>Antonym</td>
+<td>Decrease</td>
+</tr>
+<tr class="even">
+<td>Joyful</td>
+<td>Antonym</td>
+<td>Sorrowful</td>
+</tr>
+<tr class="odd">
+<td>Loud</td>
+<td>Antonym</td>
+<td>Quiet</td>
+</tr>
+<tr class="even">
+<td>Modern</td>
+<td>Antonym</td>
+<td>Ancient</td>
+</tr>
+<tr class="odd">
+<td>Native</td>
+<td>Antonym</td>
+<td>Foreign</td>
+</tr>
+<tr class="even">
+<td>Obedient</td>
+<td>Antonym</td>
+<td>Defiant</td>
+</tr>
+<tr class="odd">
+<td>Praise</td>
+<td>Antonym</td>
+<td>Criticize</td>
+</tr>
+<tr class="even">
+<td>Rare</td>
+<td>Antonym</td>
+<td>Common</td>
+</tr>
+<tr class="odd">
+<td>Superior</td>
+<td>Antonym</td>
+<td>Inferior</td>
+</tr>
+<tr class="even">
+<td>Transparent</td>
+<td>Antonym</td>
+<td>Opaque</td>
+</tr>
+<tr class="odd">
+<td>Vacant</td>
+<td>Antonym</td>
+<td>Occupied</td>
+</tr>
+<tr class="even">
+<td>Wisdom</td>
+<td>Antonym</td>
+<td>Folly</td>
+</tr>
+</tbody>
+</table>
+<p class="formula"><em>Tip: eliminate near-synonym distractors first, then pick the true opposite.</em></p>
+<h3 id="spelling">Spelling</h3>
+<ul>
+<li><p>Common trap word: Exaggerate (double “gg”, single “r”)</p></li>
+<li><p>Sound out syllable by syllable; watch for double consonants and silent letters</p></li>
+</ul>
+<h3 id="sentence-completion-one-word-no-options">Sentence Completion (One-Word, No Options)</h3>
+<ul>
+<li><p>Must be spelled and grammatically perfect — no partial credit</p></li>
+<li><p>Look for fixed collocations (get rid of, good at, extricate from) rather than literal translation</p></li>
+</ul>
+<h3 id="error-identification-correction-strategy">Error Identification / Correction Strategy</h3>
+<ol start="6" type="1">
+<li><p>Scan for subject-verb agreement first — most common error type</p></li>
+<li><p>Check tense consistency across the sentence</p></li>
+<li><p>Check preposition and article usage</p></li>
+<li><p>If nothing seems wrong, consider “No Error” — only after checking the above</p></li>
+</ol>
+<h3 id="passage-sentence-ordering-para-jumbles">Passage/Sentence Ordering (Para Jumbles)</h3>
+<ol start="10" type="1">
+<li><p>Find the opening sentence — no backward-referring pronoun (avoid This/It/He unless subject already given)</p></li>
+<li><p>Find linking words (however, therefore, thus, but, also, meanwhile)</p></li>
+<li><p>Look for pronoun chains — a sentence using he/it/this follows the sentence that introduced that noun</p></li>
+<li><p>Find the concluding sentence — summarizing or result tone</p></li>
+<li><p>Build pairs first, then arrange pairs into the full sequence</p></li>
+</ol>
+<h3 id="cloze-test">Cloze Test</h3>
+<ul>
+<li><p>Read the whole passage once before filling any blank</p></li>
+<li><p>Focus on tense consistency, preposition collocations, connector logic (contrast/cause/addition)</p></li>
+<li><p>Eliminate grammatically correct but contextually odd options</p></li>
+</ul>
+<h3 id="reading-comprehension">Reading Comprehension</h3>
+<ul>
+<li><p>Skim first for structure — main idea, tone, each paragraph's role</p></li>
+<li><p>Read questions, then go back to the passage to locate answers</p></li>
+<li><p><strong>Inference questions:</strong> answer must be supported by the passage, not outside knowledge</p></li>
+<li><p><strong>Tone/attitude questions:</strong> look for adjectives and connectors (however, surprisingly, unfortunately)</p></li>
+</ul>
+<h3 id="one-word-substitution">One-Word Substitution</h3>
+<table>
+<colgroup>
+<col style="width: 56%" />
+<col style="width: 43%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Phrase</strong></th>
+<th><strong>One Word</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A person who loves books</td>
+<td>Bibliophile</td>
+</tr>
+<tr class="even">
+<td>One who cannot read or write</td>
+<td>Illiterate</td>
+</tr>
+<tr class="odd">
+<td>A place where birds are kept</td>
+<td>Aviary</td>
+</tr>
+<tr class="even">
+<td>A person who knows everything</td>
+<td>Omniscient</td>
+</tr>
+<tr class="odd">
+<td>One who works for free</td>
+<td>Volunteer</td>
+</tr>
+<tr class="even">
+<td>A word that sounds like what it means</td>
+<td>Onomatopoeia</td>
+</tr>
+<tr class="odd">
+<td>Fear of enclosed spaces</td>
+<td>Claustrophobia</td>
+</tr>
+<tr class="even">
+<td>Study of ancient things</td>
+<td>Archaeology</td>
+</tr>
+<tr class="odd">
+<td>Handwriting that cannot be read</td>
+<td>Illegible</td>
+</tr>
+<tr class="even">
+<td>One who is not easily discouraged</td>
+<td>Persistent / Resilient</td>
+</tr>
+</tbody>
+</table>
+<h3 id="common-idioms-amp-phrasal-verbs">Common Idioms &amp; Phrasal Verbs</h3>
+<table>
+<colgroup>
+<col style="width: 45%" />
+<col style="width: 54%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Idiom / Phrase</strong></th>
+<th><strong>Meaning</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Break the ice</td>
+<td>Start a conversation in an awkward setting</td>
+</tr>
+<tr class="even">
+<td>Once in a blue moon</td>
+<td>Very rarely</td>
+</tr>
+<tr class="odd">
+<td>Hit the nail on the head</td>
+<td>Say something exactly right</td>
+</tr>
+<tr class="even">
+<td>Cut corners</td>
+<td>Do something poorly to save time/money</td>
+</tr>
+<tr class="odd">
+<td>Under the weather</td>
+<td>Feeling slightly ill</td>
+</tr>
+<tr class="even">
+<td>Call it a day</td>
+<td>Stop working on something</td>
+</tr>
+<tr class="odd">
+<td>Bite the bullet</td>
+<td>Face a difficult situation bravely</td>
+</tr>
+<tr class="even">
+<td>Piece of cake</td>
+<td>Something very easy</td>
+</tr>
+<tr class="odd">
+<td>Get the hang of</td>
+<td>Learn how to do something</td>
+</tr>
+<tr class="even">
+<td>Look forward to</td>
+<td>Anticipate with pleasure</td>
+</tr>
+<tr class="odd">
+<td>Give up</td>
+<td>Stop trying</td>
+</tr>
+<tr class="even">
+<td>Put off</td>
+<td>Postpone</td>
+</tr>
+<tr class="odd">
+<td>Bring about</td>
+<td>Cause to happen</td>
+</tr>
+<tr class="even">
+<td>Come across</td>
+<td>Find by chance</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sentence-correction-rearrangement-strategy">Sentence Correction / Rearrangement Strategy</h3>
+<ol start="15" type="1">
+<li><p>Read the full sentence first — don't fix in isolation</p></li>
+<li><p>Check high-yield areas: subject-verb agreement, tense, prepositions, articles</p></li>
+<li><p>For rearrangement: identify subject phrase, then verb phrase, then modifiers (S-V-O order)</p></li>
+</ol>
+<h3 id="final-prep-tips">Final Prep Tips</h3>
+<ul>
+<li><p>Practice daily; revise formulas until they're automatic</p></li>
+<li><p>Time yourself — both sections are speed tests as much as accuracy tests</p></li>
+<li><p>Take mock tests under real time limits before the actual exam</p></li>
+</ul>
+<h1 id="part-3-logical-reasoning-high-yield-section">Part 3 — Logical Reasoning — High-Yield Section</h1>
+<p class="formula"><em>Many companies (TCS, Infosys, Capgemini, Accenture, Wipro) ask 15–30 Logical Reasoning questions — this is consistently one of the highest-weightage sections. Master the topics below in order of frequency.</em></p>
+<h3 id="1-blood-relations">1. Blood Relations</h3>
+<ul>
+<li><p><strong>Approach:</strong> draw a family tree as you read; use + for male, − for female, and mark generations as separate rows so relations are visually obvious</p></li>
+<li><p><strong>Chain trick:</strong> for long chains (“A is B's father's mother's son”), resolve one relation at a time from left to right, redrawing the tree after each step</p></li>
+<li><p><strong>Watch for:</strong> gender-ambiguous terms (cousin, sibling, child, parent) — the puzzle may deliberately withhold gender to test careful reading</p></li>
+</ul>
+<table>
+<colgroup>
+<col style="width: 45%" />
+<col style="width: 54%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Relation</strong></th>
+<th><strong>Meaning</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Father's brother</td>
+<td>Uncle</td>
+</tr>
+<tr class="even">
+<td>Father's sister</td>
+<td>Aunt (Paternal aunt)</td>
+</tr>
+<tr class="odd">
+<td>Mother's sister</td>
+<td>Aunt (Maternal aunt)</td>
+</tr>
+<tr class="even">
+<td>Mother's brother</td>
+<td>Uncle (Maternal uncle)</td>
+</tr>
+<tr class="odd">
+<td>Brother's son</td>
+<td>Nephew</td>
+</tr>
+<tr class="even">
+<td>Brother's daughter</td>
+<td>Niece</td>
+</tr>
+<tr class="odd">
+<td>Sister's son</td>
+<td>Nephew</td>
+</tr>
+<tr class="even">
+<td>Sister's daughter</td>
+<td>Niece</td>
+</tr>
+<tr class="odd">
+<td>Father's father</td>
+<td>Grandfather</td>
+</tr>
+<tr class="even">
+<td>Mother's mother</td>
+<td>Grandmother</td>
+</tr>
+<tr class="odd">
+<td>Son's wife</td>
+<td>Daughter-in-law</td>
+</tr>
+<tr class="even">
+<td>Daughter's husband</td>
+<td>Son-in-law</td>
+</tr>
+<tr class="odd">
+<td>Husband's/Wife's brother</td>
+<td>Brother-in-law</td>
+</tr>
+<tr class="even">
+<td>Husband's/Wife's sister</td>
+<td>Sister-in-law</td>
+</tr>
+<tr class="odd">
+<td>Father's father's son (not father)</td>
+<td>Uncle</td>
+</tr>
+<tr class="even">
+<td>Mother's father's daughter (not mother)</td>
+<td>Aunt / Mother</td>
+</tr>
+<tr class="odd">
+<td>Uncle's/Aunt's son or daughter</td>
+<td>Cousin</td>
+</tr>
+<tr class="even">
+<td>Grandfather's only son</td>
+<td>Father</td>
+</tr>
+<tr class="odd">
+<td>Father's mother's grandson (not self)</td>
+<td>Brother</td>
+</tr>
+<tr class="even">
+<td>Father-in-law's wife</td>
+<td>Mother-in-law</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-direction-sense">2. Direction Sense</h3>
+<ul>
+<li><p><strong>Standard orientation:</strong> facing North — right hand points East, left hand points West (unless the question states “facing south” etc.)</p></li>
+<li><p><strong>Left/Right turns:</strong> facing North → turn right = face East; turn left = face West; a 180° turn always reverses direction</p></li>
+<li><p><strong>Net displacement:</strong> plot each move on an X-Y grid (N/S = Y-axis, E/W = X-axis); final distance from start = √(net-X² + net-Y²) using Pythagoras</p></li>
+<li><p><strong>Shadow trick:</strong> at sunrise, shadow falls West; at sunset, shadow falls East (sun rises in the East)</p></li>
+<li><p><strong>Common trap:</strong> “turned towards left” vs “turned left” can mean the same thing — read the exact wording; some papers use “clockwise/anticlockwise” instead of left/right</p></li>
+</ul>
+<h3 id="3-seating-arrangement-linear-amp-circular">3. Seating Arrangement — Linear &amp; Circular</h3>
+<ul>
+<li><p><strong>Linear — facing same direction:</strong> left/right are from each person's own perspective, not the reader's, unless stated “facing the reader”</p></li>
+<li><p><strong>Linear — facing reader (North-facing row vs South-facing row):</strong> left/right flip between two rows facing each other — the person directly opposite has left and right reversed</p></li>
+<li><p><strong>Circular — facing center:</strong> clockwise = to the right of a given person; anticlockwise = to the left</p></li>
+<li><p><strong>Circular — facing outward (away from center):</strong> left/right are reversed compared to facing-center arrangements — always check which way the group faces first</p></li>
+<li><p><strong>Fixed-point trick:</strong> start placing people from the person with the most constraints (e.g. “immediate neighbours of X”) rather than reading top to bottom</p></li>
+<li><p><strong>Elimination trick:</strong> draw all valid slots first, then cross out positions violating each clue one at a time — don't try to satisfy all clues in one pass</p></li>
+</ul>
+<h3 id="4-coding-decoding">4. Coding-Decoding</h3>
+<table>
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 45%" />
+<col style="width: 32%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Rule Type</strong></th>
+<th><strong>How it works</strong></th>
+<th><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Alphabet Position</td>
+<td>Each letter shifted by a fixed number of positions forward/backward</td>
+<td>CAT → DBU (each letter +1)</td>
+</tr>
+<tr class="even">
+<td>Reverse Alphabet</td>
+<td>Letter replaced by its mirror position from the other end (A↔︎Z, B↔︎Y...)</td>
+<td>A→Z, B→Y, C→X (position + mirror position = 27)</td>
+</tr>
+<tr class="odd">
+<td>Symbol Coding</td>
+<td>Letters/words mapped to arbitrary symbols via a given key; decode using the key only</td>
+<td>If ‘@’ = A, ‘#’ = B, then A B → @ #</td>
+</tr>
+<tr class="even">
+<td>Mixed Coding</td>
+<td>Combination of position shift AND reversal, or letters + numbers together</td>
+<td>Word reversed, then each letter shifted — solve in two steps</td>
+</tr>
+<tr class="odd">
+<td>Number Coding</td>
+<td>Each letter assigned a number (often A=1...Z=26, or a custom key)</td>
+<td>WORD → 23-15-18-4 (standard A1Z26)</td>
+</tr>
+<tr class="even">
+<td>Letter Coding</td>
+<td>Whole words substituted with code words via a given key table</td>
+<td>If ‘rain is wet’ = ‘pit sil kot’, decode word-by-word using the key</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p><strong>Solving method:</strong> always find the transformation rule using the given example pair first, then apply the exact same rule to the target word — don't assume a standard shift without checking the example</p></li>
+<li><p><strong>Double-check:</strong> verify your rule against every letter in the example, not just the first one — many patterns use different shifts for vowels vs consonants</p></li>
+</ul>
+<h3 id="5-analogy-amp-classification">5. Analogy &amp; Classification</h3>
+<ul>
+<li><p><strong>Analogy — find the relationship first:</strong> cause-effect, part-whole, synonym, antonym, degree, or function — e.g. Doctor:Hospital :: Teacher:School (place of work)</p></li>
+<li><p><strong>Analogy trap:</strong> the relationship must hold in the same direction and order as the original pair — not just any related pair</p></li>
+<li><p><strong>Classification (Odd One Out):</strong> group items by category, not surface similarity — e.g. among Lion, Tiger, Whale, Leopard: Whale is odd (not a land carnivore/cat family)</p></li>
+<li><p><strong>Numeric classification:</strong> check prime vs composite, odd vs even, perfect square, or digit-sum patterns when the odd-one-out is a set of numbers</p></li>
+</ul>
+<h3 id="6-statement-amp-conclusion-assumption-syllogism">6. Statement &amp; Conclusion / Assumption / Syllogism</h3>
+<ul>
+<li><p><strong>Statement &amp; Conclusion:</strong> a conclusion follows only if it is directly and necessarily supported by the statement — don't use outside knowledge or “likely” inferences</p></li>
+<li><p><strong>Statement &amp; Assumption:</strong> an assumption is something implicitly taken for granted for the statement to make sense — test it by negating it: if the statement falls apart, it was an assumption</p></li>
+<li><p><strong>Syllogism — use Venn circles:</strong> draw a circle for each term; “All A are B” = A circle fully inside B; “Some A are B” = circles overlap; “No A are B” = circles fully separate</p></li>
+<li><p><strong>Syllogism — particular vs universal:</strong> a conclusion using “all/no” needs both premises to be universal; if either premise is “some”, the conclusion can only be “some” at best</p></li>
+<li><p><strong>Syllogism trap:</strong> “Some A are B” does NOT imply “Some A are not B” — both can be independently true or false; check each conclusion against every valid Venn diagram, not just one</p></li>
+</ul>
+<h3 id="7-venn-diagram-tricks">7. Venn Diagram Tricks</h3>
+<table>
+<colgroup>
+<col style="width: 36%" />
+<col style="width: 63%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Region</strong></th>
+<th><strong>Formula</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Only A</td>
+<td>A − (A∩B) − (A∩C) + (A∩B∩C)</td>
+</tr>
+<tr class="even">
+<td>Only B</td>
+<td>B − (A∩B) − (B∩C) + (A∩B∩C)</td>
+</tr>
+<tr class="odd">
+<td>A ∩ B (total overlap incl. C)</td>
+<td>n(A) + n(B) − n(A∪B)</td>
+</tr>
+<tr class="even">
+<td>A ∩ B ∩ C</td>
+<td>n(A) + n(B) + n(C) − n(A∪B) − n(B∪C) − n(A∪C) + n(A∪B∪C)</td>
+</tr>
+<tr class="odd">
+<td>A ∪ B ∪ C (2-set)</td>
+<td>n(A) + n(B) − n(A∩B)</td>
+</tr>
+<tr class="even">
+<td>A ∪ B ∪ C (3-set)</td>
+<td>n(A)+n(B)+n(C)−n(A∩B)−n(B∩C)−n(A∩C)+n(A∩B∩C)</td>
+</tr>
+<tr class="odd">
+<td>Exactly two of three sets</td>
+<td>(A∩B) + (B∩C) + (A∩C) − 3×(A∩B∩C)</td>
+</tr>
+<tr class="even">
+<td>Neither / outside all sets</td>
+<td>Total − n(A∪B∪C)</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p><strong>Trick:</strong> always fill in the innermost region (A∩B∩C) first when given raw data, then work outward — solving in that order avoids double-counting</p></li>
+</ul>
+<h3 id="8-ranking-amp-ordering">8. Ranking &amp; Ordering</h3>
+<ul>
+<li><p><strong>Rank from one end:</strong> if X is Nth from the top in a group of T, X's rank from the bottom = T − N + 1</p></li>
+<li><p><strong>Total people in a row:</strong> if X is Nth from the left and Mth from the right, total = N + M − 1</p></li>
+<li><p><strong>Between two people:</strong> if X is Nth and Y is Mth from the same end, people strictly between them = |N − M| − 1</p></li>
+<li><p><strong>Rank change:</strong> “moves up by k places” means new rank (from top) = old rank − k; “moves down” means old rank + k</p></li>
+</ul>
+<h3 id="9-calendar-reasoning-extended-shortcuts">9. Calendar Reasoning — Extended Shortcuts</h3>
+<p class="formula"><em>Builds on the base Calendar formulas in Part 1, Section 15 — add these shortcuts for faster day-of-week calculation.</em></p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Month</strong></th>
+<th><strong>Code</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>January (leap year)</td>
+<td>6</td>
+</tr>
+<tr class="even">
+<td>January (non-leap)</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>February (leap year)</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>February (non-leap)</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<td>March</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>April</td>
+<td>6</td>
+</tr>
+<tr class="odd">
+<td>May</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>June</td>
+<td>4</td>
+</tr>
+<tr class="odd">
+<td>July</td>
+<td>6</td>
+</tr>
+<tr class="even">
+<td>August</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>September</td>
+<td>5</td>
+</tr>
+<tr class="even">
+<td>October</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>November</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>December</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p><strong>Century codes:</strong> 1600s/2000s = 6, 1700s = 4, 1800s = 2, 1900s = 0 (repeats every 400 years)</p></li>
+<li><p><strong>Day calculation shortcut (Zeller-style):</strong> Day code = (date + month code + last-2-digits-of-year + last-2-digits÷4 + century code) mod 7, where result 0=Sunday, 1=Monday...6=Saturday</p></li>
+<li><p><strong>Faster mental route:</strong> memorize the weekday of one “anchor date” per year (e.g. 1st Jan or the last day of Feb) and count forward using odd-day jumps (1 odd day per common year, 2 per leap year)</p></li>
+</ul>
+<p class="formula"><em>Worked example: 15 Aug 1947 — date=15, Aug code=2, yy=47, yy÷4=11, century(1900s)=0 → (15+2+47+11+0) mod 7 = 75 mod 7 = 5 → Friday.</em></p>
+<h3 id="10-clock-reasoning">10. Clock Reasoning</h3>
+<p class="formula"><em>Core angle formula and coincidence timing are covered in Part 1, Section 16 — additional reasoning-style shortcuts below.</em></p>
+<ul>
+<li><p><strong>Mirror image time:</strong> reflect the time about 6:00 or 12:00 — formula: mirror time = 11:60 − given time (e.g. 4:20 → 7:40)</p></li>
+<li><p><strong>Water image time:</strong> reflect about the vertical (9:00–3:00) axis — formula: water image = 8:60 − given time for a 12-hour dial reflected top-bottom... in practice, use 12:00 minus elapsed time from 6:00 for quick checks</p></li>
+<li><p><strong>Gaining/losing clocks:</strong> if a clock gains/loses m minutes every h hours, actual elapsed time vs shown time ratio = (h×60) : (h×60 ± m) — use this ratio to scale any duration</p></li>
+<li><p><strong>Hands at right angle:</strong> hands are 90° apart 22 times in 24 hours (twice roughly every 65 5/11 minutes cycle, skipping one occurrence near 3 and 9 o'clock)</p></li>
+</ul>
+<h3 id="11-input-output-reasoning">11. Input–Output Reasoning</h3>
+<ul>
+<li><p><strong>Identify the rule first:</strong> compare Step 0 (input) to Step 1 — look for sorting (alphabetical/numerical), shifting to ends, or arithmetic operations on numbers</p></li>
+<li><p><strong>Common patterns:</strong> words sorted alphabetically one-by-one shifted to an end each step; numbers sorted by value; numbers replaced by their squares/products; word-number pairs swapped</p></li>
+<li><p><strong>Track two things separately:</strong> if both words and numbers are present, solve their movement rules independently — they rarely interact</p></li>
+<li><p><strong>Verify on a second step:</strong> confirm your rule correctly predicts Step 2 from Step 1 before applying it to answer the question — a rule that only fits one step transition may be wrong</p></li>
+</ul>
+<h3 id="12-puzzle-sets-multi-condition-puzzles">12. Puzzle Sets (Multi-condition puzzles)</h3>
+<ul>
+<li><p><strong>Types:</strong> floor puzzles, box/stack puzzles, scheduling (day/month) puzzles, comparison (age/height/salary) puzzles, and combined seating + attribute puzzles</p></li>
+<li><p><strong>Strategy:</strong> list all entities and all attributes in a grid before reading conditions in detail; fill in directly-stated facts first, then apply elimination for indirect clues</p></li>
+<li><p><strong>Comparison puzzles:</strong> convert “taller than / older than / earns more than” clues into a single ranked order chain, merging partial chains as you go</p></li>
+<li><p><strong>Floor/box puzzles:</strong> number floors bottom-to-top (or boxes top-to-bottom) exactly as the question defines — a reversed numbering assumption is the most common error</p></li>
+<li><p><strong>Time management:</strong> if a puzzle set has 4–5 questions attached, spend up to 3–4 minutes solving the puzzle itself — the setup cost is repaid across all its questions</p></li>
+</ul>
+<h1 id="data-sufficiency">Data Sufficiency</h1>
+<p class="formula"><em>Frequently asked in Accenture, Capgemini, and Infosys. Tests whether given statements provide enough information to answer the question — not whether you can find the actual answer.</em></p>
+<table>
+<colgroup>
+<col style="width: 36%" />
+<col style="width: 63%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Answer Choice</strong></th>
+<th><strong>Meaning</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Statement I alone is sufficient</td>
+<td>Question can be answered using only Statement I, but Statement II alone is not enough</td>
+</tr>
+<tr class="even">
+<td>Statement II alone is sufficient</td>
+<td>Question can be answered using only Statement II, but Statement I alone is not enough</td>
+</tr>
+<tr class="odd">
+<td>Both together are sufficient</td>
+<td>Neither statement alone is enough, but combining both answers the question</td>
+</tr>
+<tr class="even">
+<td>Either statement alone is sufficient</td>
+<td>Statement I alone works AND Statement II alone also works (independently)</td>
+</tr>
+<tr class="odd">
+<td>Neither is sufficient</td>
+<td>Even combining both statements does not answer the question</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p><strong>Golden rule:</strong> evaluate Statement I completely on its own first, forgetting Statement II exists; then evaluate Statement II alone; only combine them if neither works individually</p></li>
+<li><p><strong>Sufficiency ≠ a nice answer:</strong> a statement is “sufficient” if it gives exactly one definite answer (including “no”) — you don't need to compute the final number, just confirm it's uniquely determined</p></li>
+<li><p><strong>Common trap:</strong> a statement that lets you calculate two possible values (e.g. x = 4 or x = −4) is NOT sufficient, even though it narrows things down</p></li>
+<li><p><strong>Don't import outside assumptions:</strong> e.g. don't assume a variable is positive or an integer unless the question or a statement says so</p></li>
+</ul>
+
+  </main>
+</div>
+
+</section>
+
+<section id="page-dsavault" class="hidden">
+<div id="dsa-vault-root">
+
 <div class="wrap">
 
   <div class="hero">
@@ -373,19 +2199,77 @@
 
   <div class="cat-nav" id="catNav"></div>
 
-  <div id="content"></div>
+  <div id="dsaContent"></div>
   <div class="empty-state" id="emptyState">no problems match your filters ¯\_(ツ)_/¯</div>
 
 </div>
 
+
+</div>
+</section>
+
 <script>
+  const content = document.getElementById('content');
+  const toc = document.getElementById('toc');
+  const headings = Array.from(content.querySelectorAll('h1, h3'));
+
+  let currentPartUl = null;
+  headings.forEach(h => {
+    if (h.tagName === 'H1') {
+      const wrap = document.createElement('div');
+      wrap.className = 'toc-part';
+      const a = document.createElement('a');
+      a.className = 'toc-part-label';
+      a.textContent = h.textContent;
+      a.href = '#' + h.id;
+      wrap.appendChild(a);
+      currentPartUl = document.createElement('ul');
+      currentPartUl.className = 'toc-sub';
+      wrap.appendChild(currentPartUl);
+      toc.appendChild(wrap);
+    } else if (h.tagName === 'H3' && currentPartUl) {
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.href = '#' + h.id;
+      a.textContent = h.textContent;
+      li.appendChild(a);
+      currentPartUl.appendChild(li);
+    }
+  });
+
+  const searchInput = document.getElementById('toc-search');
+  searchInput.addEventListener('input', () => {
+    const q = searchInput.value.trim().toLowerCase();
+    document.querySelectorAll('.toc-part').forEach(part => {
+      const subItems = part.querySelectorAll('.toc-sub li');
+      let anyVisible = false;
+      subItems.forEach(li => {
+        const match = li.textContent.toLowerCase().includes(q);
+        li.classList.toggle('toc-hidden', !match && q !== '');
+        if (match || q === '') anyVisible = true;
+      });
+      part.classList.toggle('toc-hidden', !anyVisible && q !== '');
+    });
+  });
+
+  const menuToggle = document.getElementById('menu-toggle');
+  const sidebar = document.getElementById('sidebar');
+  menuToggle.addEventListener('click', () => sidebar.classList.toggle('open'));
+  toc.addEventListener('click', (e) => {
+    if (e.target.tagName === 'A') sidebar.classList.remove('open');
+  });
+</script>
+
+<script>
+(function(){
+
 const PROBLEMS = [{"category": "Arrays", "title": "Two Sum", "difficulty": "Easy", "code": "vector<int> twoSum(vector<int>& nums, int target) {\n    unordered_map<int,int> mp; // value -> index\n    for (int i = 0; i < nums.size(); i++) {\n        int need = target - nums[i];\n        if (mp.count(need)) return {mp[need], i};\n        mp[nums[i]] = i;\n    }\n    return {};\n}\n// Time: O(n)  Space: O(n)", "explanation": "Use a hash map to store each number's index while scanning once; for each element check if its complement (target minus the number) was already seen, giving an O(n) one-pass solution instead of the O(n^2) brute force.", "example": {"input": "nums = [2,7,11,15], target = 9", "output": "[0,1]"}}, {"category": "Arrays", "title": "Best Time to Buy and Sell Stock", "difficulty": "Easy", "code": "int maxProfit(vector<int>& prices) {\n    int minPrice = INT_MAX, best = 0;\n    for (int p : prices) {\n        minPrice = min(minPrice, p);\n        best = max(best, p - minPrice);\n    }\n    return best;\n}\n// Time: O(n)  Space: O(1)", "explanation": "Track the minimum price seen so far while scanning left to right, and at each step compute the profit if sold today; keep the maximum profit found.", "example": {"input": "prices = [7,1,5,3,6,4]", "output": "5"}}, {"category": "Arrays", "title": "Product of Array Except Self", "difficulty": "Medium", "code": "vector<int> productExceptSelf(vector<int>& nums) {\n    int n = nums.size();\n    vector<int> res(n, 1);\n    int prefix = 1;\n    for (int i = 0; i < n; i++) {\n        res[i] = prefix;\n        prefix *= nums[i];\n    }\n    int suffix = 1;\n    for (int i = n - 1; i >= 0; i--) {\n        res[i] *= suffix;\n        suffix *= nums[i];\n    }\n    return res;\n}\n// Time: O(n)  Space: O(1) extra (excluding output)", "explanation": "Compute prefix products (product of all elements to the left) in one pass, then multiply by suffix products (product of all elements to the right) in a second pass, avoiding division entirely.", "example": {"input": "nums = [1,2,3,4]", "output": "[24,12,8,6]"}}, {"category": "Arrays", "title": "Maximum Subarray", "difficulty": "Medium", "code": "int maxSubArray(vector<int>& nums) {\n    int best = nums[0], cur = nums[0];\n    for (int i = 1; i < nums.size(); i++) {\n        cur = max(nums[i], cur + nums[i]);\n        best = max(best, cur);\n    }\n    return best;\n}\n// Kadane's Algorithm - Time: O(n)  Space: O(1)", "explanation": "Kadane's algorithm: at each index decide whether to extend the current subarray or start fresh from the current element, tracking the best sum seen so far.", "example": {"input": "nums = [-2,1,-3,4,-1,2,1,-5,4]", "output": "6"}}, {"category": "Arrays", "title": "Merge Intervals", "difficulty": "Medium", "code": "vector<vector<int>> merge(vector<vector<int>>& intervals) {\n    sort(intervals.begin(), intervals.end());\n    vector<vector<int>> res;\n    for (auto& iv : intervals) {\n        if (!res.empty() && iv[0] <= res.back()[1])\n            res.back()[1] = max(res.back()[1], iv[1]);\n        else\n            res.push_back(iv);\n    }\n    return res;\n}\n// Time: O(n log n)  Space: O(n)", "explanation": "Sort intervals by start time, then sweep through and merge the current interval into the last one in the result whenever they overlap.", "example": {"input": "intervals = [[1,3],[2,6],[8,10],[15,18]]", "output": "[[1,6],[8,10],[15,18]]"}}, {"category": "Arrays", "title": "Rotate Array", "difficulty": "Medium", "code": "void reverse(vector<int>& nums, int l, int r) {\n    while (l < r) swap(nums[l++], nums[r--]);\n}\nvoid rotate(vector<int>& nums, int k) {\n    int n = nums.size();\n    k %= n;\n    reverse(nums, 0, n - 1);\n    reverse(nums, 0, k - 1);\n    reverse(nums, k, n - 1);\n}\n// Time: O(n)  Space: O(1)", "explanation": "Reverse the whole array, then reverse the first k elements and the remaining n-k elements separately — three reversals produce an in-place rotation.", "example": {"input": "nums = [1,2,3,4,5,6,7], k = 3", "output": "[5,6,7,1,2,3,4]"}}, {"category": "Arrays", "title": "Set Matrix Zeroes", "difficulty": "Medium", "code": "void setZeroes(vector<vector<int>>& matrix) {\n    int m = matrix.size(), n = matrix[0].size();\n    bool firstRow = false, firstCol = false;\n    for (int j = 0; j < n; j++) if (matrix[0][j] == 0) firstRow = true;\n    for (int i = 0; i < m; i++) if (matrix[i][0] == 0) firstCol = true;\n\n    for (int i = 1; i < m; i++)\n        for (int j = 1; j < n; j++)\n            if (matrix[i][j] == 0) { matrix[i][0] = 0; matrix[0][j] = 0; }\n\n    for (int i = 1; i < m; i++)\n        for (int j = 1; j < n; j++)\n            if (matrix[i][0] == 0 || matrix[0][j] == 0) matrix[i][j] = 0;\n\n    if (firstRow) for (int j = 0; j < n; j++) matrix[0][j] = 0;\n    if (firstCol) for (int i = 0; i < m; i++) matrix[i][0] = 0;\n}\n// Time: O(m*n)  Space: O(1)", "explanation": "Use the first row and column of the matrix itself as markers for which rows/columns need zeroing (tracking separately whether the first row/column originally had a zero), then apply zeros in a second pass for O(1) extra space.", "example": {"input": "matrix = [[1,1,1],[1,0,1],[1,1,1]]", "output": "[[1,0,1],[0,0,0],[1,0,1]]"}}, {"category": "Arrays", "title": "Move Zeroes", "difficulty": "Easy", "code": "void moveZeroes(vector<int>& nums) {\n    int insertPos = 0;\n    for (int num : nums) {\n        if (num != 0) nums[insertPos++] = num;\n    }\n    while (insertPos < nums.size()) nums[insertPos++] = 0;\n}\n// Time: O(n)  Space: O(1)", "explanation": "In-place technique: overwrite the array from the front with all non-zero elements in their original order, then fill whatever positions remain at the tail with zeroes.", "example": {"input": "nums = [0,1,0,3,12]", "output": "[1,3,12,0,0]"}}, {"category": "Arrays", "title": "Majority Element", "difficulty": "Easy", "code": "int majorityElement(vector<int>& nums) {\n    int count = 0, candidate = 0;\n    for (int num : nums) {\n        if (count == 0) candidate = num;\n        count += (num == candidate) ? 1 : -1;\n    }\n    return candidate;\n}\n// Boyer-Moore Voting - Time: O(n)  Space: O(1)", "explanation": "Boyer-Moore voting algorithm: maintain a candidate and a counter, incrementing on a match and decrementing otherwise, resetting the candidate whenever the counter hits zero; the element appearing more than n/2 times always survives.", "example": {"input": "nums = [2,2,1,1,1,2,2]", "output": "2"}}, {"category": "Strings", "title": "Valid Anagram", "difficulty": "Easy", "code": "bool isAnagram(string s, string t) {\n    if (s.size() != t.size()) return false;\n    int cnt[26] = {0};\n    for (char c : s) cnt[c - 'a']++;\n    for (char c : t) if (--cnt[c - 'a'] < 0) return false;\n    return true;\n}\n// Time: O(n)  Space: O(1)", "explanation": "Count character frequencies of the first string, then decrement counts while scanning the second string; if any count goes negative or lengths differ, it's not an anagram.", "example": {"input": "s = \"anagram\", t = \"nagaram\"", "output": "true"}}, {"category": "Strings", "title": "Longest Common Prefix", "difficulty": "Easy", "code": "string longestCommonPrefix(vector<string>& strs) {\n    if (strs.empty()) return \"\";\n    string prefix = strs[0];\n    for (int i = 1; i < strs.size(); i++) {\n        while (strs[i].find(prefix) != 0) {\n            prefix = prefix.substr(0, prefix.size() - 1);\n            if (prefix.empty()) return \"\";\n        }\n    }\n    return prefix;\n}\n// Time: O(n*m)  Space: O(1)", "explanation": "Start with the first string as the candidate prefix, then repeatedly shrink it until it's a prefix of every other string in the list.", "example": {"input": "strs = [\"flower\",\"flow\",\"flight\"]", "output": "\"fl\""}}, {"category": "Strings", "title": "Valid Palindrome", "difficulty": "Easy", "code": "bool isPalindrome(string s) {\n    int l = 0, r = s.size() - 1;\n    while (l < r) {\n        while (l < r && !isalnum(s[l])) l++;\n        while (l < r && !isalnum(s[r])) r--;\n        if (tolower(s[l]) != tolower(s[r])) return false;\n        l++; r--;\n    }\n    return true;\n}\n// Time: O(n)  Space: O(1)", "explanation": "Two pointers move inward from both ends, skipping non-alphanumeric characters and comparing lowercase letters until they meet.", "example": {"input": "s = \"A man, a plan, a canal: Panama\"", "output": "true"}}, {"category": "Strings", "title": "Group Anagrams", "difficulty": "Medium", "code": "vector<vector<string>> groupAnagrams(vector<string>& strs) {\n    unordered_map<string, vector<string>> mp;\n    for (string& s : strs) {\n        string key = s;\n        sort(key.begin(), key.end());\n        mp[key].push_back(s);\n    }\n    vector<vector<string>> res;\n    for (auto& [k, v] : mp) res.push_back(v);\n    return res;\n}\n// Time: O(n * k log k)  Space: O(n * k)", "explanation": "Sort the letters of each string to form a canonical key, then group all strings sharing the same key together using a hash map.", "example": {"input": "strs = [\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]", "output": "[[\"eat\",\"tea\",\"ate\"],[\"tan\",\"nat\"],[\"bat\"]]"}}, {"category": "Strings", "title": "Longest Substring Without Repeating Characters", "difficulty": "Medium", "code": "int lengthOfLongestSubstring(string s) {\n    unordered_map<char,int> last;\n    int best = 0, left = 0;\n    for (int right = 0; right < s.size(); right++) {\n        char c = s[right];\n        if (last.count(c) && last[c] >= left)\n            left = last[c] + 1;\n        last[c] = right;\n        best = max(best, right - left + 1);\n    }\n    return best;\n}\n// Sliding Window - Time: O(n)  Space: O(min(n, charset))", "explanation": "Sliding window with a hash map recording the last index of each character; when a repeat is found within the window, jump the left pointer just past its previous occurrence.", "example": {"input": "s = \"abcabcbb\"", "output": "3"}}, {"category": "Strings", "title": "String to Integer (atoi)", "difficulty": "Medium", "code": "int myAtoi(string s) {\n    int i = 0, n = s.size();\n    while (i < n && s[i] == ' ') i++;\n    int sign = 1;\n    if (i < n && (s[i] == '+' || s[i] == '-')) sign = (s[i++] == '-') ? -1 : 1;\n    long res = 0;\n    while (i < n && isdigit(s[i])) {\n        res = res * 10 + (s[i++] - '0');\n        if (res * sign > INT_MAX) return INT_MAX;\n        if (res * sign < INT_MIN) return INT_MIN;\n    }\n    return res * sign;\n}\n// Time: O(n)  Space: O(1)", "explanation": "Skip leading whitespace, read an optional sign, then consume digits while accumulating the number, clamping to INT_MIN/INT_MAX bounds as soon as they're exceeded.", "example": {"input": "s = \"   -42\"", "output": "-42"}}, {"category": "Strings", "title": "Minimum Window Substring", "difficulty": "Hard", "code": "string minWindow(string s, string t) {\n    if (t.empty()) return \"\";\n    unordered_map<char,int> need, window;\n    for (char c : t) need[c]++;\n    int required = need.size(), formed = 0;\n    int left = 0, bestLen = INT_MAX, bestStart = 0;\n    for (int right = 0; right < s.size(); right++) {\n        char c = s[right];\n        window[c]++;\n        if (need.count(c) && window[c] == need[c]) formed++;\n        while (formed == required) {\n            if (right - left + 1 < bestLen) {\n                bestLen = right - left + 1;\n                bestStart = left;\n            }\n            char lc = s[left];\n            window[lc]--;\n            if (need.count(lc) && window[lc] < need[lc]) formed--;\n            left++;\n        }\n    }\n    return bestLen == INT_MAX ? \"\" : s.substr(bestStart, bestLen);\n}\n// Sliding Window - Time: O(n)  Space: O(k)", "explanation": "Sliding window that expands the right edge until all characters of t are covered, then contracts the left edge to shrink the window while it stays valid, recording the smallest valid window seen.", "example": {"input": "s = \"ADOBECODEBANC\", t = \"ABC\"", "output": "\"BANC\""}}, {"category": "Sliding Window", "title": "Maximum Sum Subarray of Size K", "difficulty": "Easy", "code": "int maxSumSubarraySizeK(vector<int>& nums, int k) {\n    int windowSum = 0, best = 0;\n    for (int i = 0; i < nums.size(); i++) {\n        windowSum += nums[i];\n        if (i >= k - 1) {\n            best = max(best, windowSum);\n            windowSum -= nums[i - k + 1];\n        }\n    }\n    return best;\n}\n// Fixed-size Sliding Window - Time: O(n)  Space: O(1)", "explanation": "Slide a fixed-size window of length k across the array, maintaining a running sum by adding the new right element and subtracting the element leaving on the left, tracking the max sum seen.", "example": {"input": "nums = [2,1,5,1,3,2], k = 3", "output": "9"}}, {"category": "Sliding Window", "title": "Longest Repeating Character Replacement", "difficulty": "Medium", "code": "int characterReplacement(string s, int k) {\n    unordered_map<char,int> freq;\n    int left = 0, maxFreq = 0, best = 0;\n    for (int right = 0; right < s.size(); right++) {\n        freq[s[right]]++;\n        maxFreq = max(maxFreq, freq[s[right]]);\n        while ((right - left + 1) - maxFreq > k) {\n            freq[s[left]]--;\n            left++;\n        }\n        best = max(best, right - left + 1);\n    }\n    return best;\n}\n// Sliding Window - Time: O(n)  Space: O(26)", "explanation": "Sliding window tracking the count of the most frequent character inside it; if replacing all other characters in the window would need more than k swaps, shrink from the left, otherwise expand and track the best window length.", "example": {"input": "s = \"AABABBA\", k = 1", "output": "4"}}, {"category": "Sliding Window", "title": "Permutation in String", "difficulty": "Medium", "code": "bool checkInclusion(string s1, string s2) {\n    if (s1.size() > s2.size()) return false;\n    vector<int> need(26, 0), window(26, 0);\n    for (char c : s1) need[c - 'a']++;\n    int k = s1.size();\n    for (int i = 0; i < s2.size(); i++) {\n        window[s2[i] - 'a']++;\n        if (i >= k) window[s2[i - k] - 'a']--;\n        if (i >= k - 1 && window == need) return true;\n    }\n    return false;\n}\n// Fixed-size Sliding Window - Time: O(n)  Space: O(26)", "explanation": "Slide a window the same size as s1 across s2, keeping a running character-count array for the window; whenever that count array matches s1's exactly, a permutation of s1 has been found.", "example": {"input": "s1 = \"ab\", s2 = \"eidbaooo\"", "output": "true"}}, {"category": "Two Pointer", "title": "Pair with Given Sum (Sorted Array)", "difficulty": "Easy", "code": "bool pairWithGivenSum(vector<int>& nums, int target) {\n    int l = 0, r = nums.size() - 1;\n    while (l < r) {\n        int sum = nums[l] + nums[r];\n        if (sum == target) return true;\n        else if (sum < target) l++;\n        else r--;\n    }\n    return false;\n}\n// Two Pointer - Time: O(n)  Space: O(1)", "explanation": "Since the array is sorted, start pointers at both ends: if the sum is too small move the left pointer right to increase it, if too large move the right pointer left to decrease it.", "example": {"input": "nums = [1,2,3,4,6], target = 6", "output": "true"}}, {"category": "Two Pointer", "title": "3Sum", "difficulty": "Medium", "code": "vector<vector<int>> threeSum(vector<int>& nums) {\n    sort(nums.begin(), nums.end());\n    vector<vector<int>> res;\n    int n = nums.size();\n    for (int i = 0; i < n - 2; i++) {\n        if (i > 0 && nums[i] == nums[i - 1]) continue;\n        int l = i + 1, r = n - 1;\n        while (l < r) {\n            int sum = nums[i] + nums[l] + nums[r];\n            if (sum == 0) {\n                res.push_back({nums[i], nums[l], nums[r]});\n                while (l < r && nums[l] == nums[l + 1]) l++;\n                while (l < r && nums[r] == nums[r - 1]) r--;\n                l++; r--;\n            } else if (sum < 0) l++;\n            else r--;\n        }\n    }\n    return res;\n}\n// Sort + Two Pointer - Time: O(n^2)  Space: O(1) extra", "explanation": "Sort the array, fix one element, then use two pointers on the remaining sorted range to find pairs that sum to its negation, skipping duplicate values to avoid repeated triplets.", "example": {"input": "nums = [-1,0,1,2,-1,-4]", "output": "[[-1,-1,2],[-1,0,1]]"}}, {"category": "Two Pointer", "title": "Container With Most Water", "difficulty": "Medium", "code": "int maxArea(vector<int>& height) {\n    int l = 0, r = height.size() - 1, best = 0;\n    while (l < r) {\n        int area = min(height[l], height[r]) * (r - l);\n        best = max(best, area);\n        if (height[l] < height[r]) l++;\n        else r--;\n    }\n    return best;\n}\n// Two Pointer - Time: O(n)  Space: O(1)", "explanation": "Two pointers start at both ends; the area is limited by the shorter wall, so always move the pointer at the shorter wall inward, since moving the taller one can never increase the area.", "example": {"input": "height = [1,8,6,2,5,4,8,3,7]", "output": "49"}}, {"category": "Two Pointer", "title": "Remove Duplicates from Sorted Array", "difficulty": "Easy", "code": "int removeDuplicates(vector<int>& nums) {\n    if (nums.empty()) return 0;\n    int slow = 0;\n    for (int fast = 1; fast < nums.size(); fast++) {\n        if (nums[fast] != nums[slow]) {\n            slow++;\n            nums[slow] = nums[fast];\n        }\n    }\n    return slow + 1;\n}\n// Two Pointer - Time: O(n)  Space: O(1)", "explanation": "A slow pointer marks the last unique element written; a fast pointer scans ahead, and whenever it finds a new value, slow advances and copies it in, compacting the array in place.", "example": {"input": "nums = [0,0,1,1,1,2,2,3,3,4]", "output": "5, nums becomes [0,1,2,3,4,...]"}}, {"category": "Two Pointer", "title": "Squares of a Sorted Array", "difficulty": "Easy", "code": "vector<int> sortedSquares(vector<int>& nums) {\n    int n = nums.size();\n    vector<int> res(n);\n    int l = 0, r = n - 1;\n    for (int i = n - 1; i >= 0; i--) {\n        int leftSq = nums[l] * nums[l], rightSq = nums[r] * nums[r];\n        if (leftSq > rightSq) { res[i] = leftSq; l++; }\n        else { res[i] = rightSq; r--; }\n    }\n    return res;\n}\n// Two Pointer - Time: O(n)  Space: O(n)", "explanation": "The largest squared values come from whichever end (most negative or most positive) has the larger absolute value, so fill the result from the back using two pointers converging inward.", "example": {"input": "nums = [-4,-1,0,3,10]", "output": "[0,1,9,16,100]"}}, {"category": "Two Pointer", "title": "Trapping Rain Water", "difficulty": "Hard", "code": "int trap(vector<int>& height) {\n    int l = 0, r = height.size() - 1;\n    int leftMax = 0, rightMax = 0, water = 0;\n    while (l < r) {\n        if (height[l] < height[r]) {\n            leftMax = max(leftMax, height[l]);\n            water += leftMax - height[l];\n            l++;\n        } else {\n            rightMax = max(rightMax, height[r]);\n            water += rightMax - height[r];\n            r--;\n        }\n    }\n    return water;\n}\n// Two Pointer - Time: O(n)  Space: O(1)", "explanation": "Two pointers track the max wall height seen from each side; water trapped above the shorter side's current bar equals that side's running max minus the bar's own height, since the far side is guaranteed to have an equal or taller wall.", "example": {"input": "height = [0,1,0,2,1,0,1,3,2,1,2,1]", "output": "6"}}, {"category": "Linked List", "title": "Reverse Linked List", "difficulty": "Easy", "code": "struct ListNode { int val; ListNode* next; ListNode(int x): val(x), next(nullptr) {} };\n\nListNode* reverseList(ListNode* head) {\n    ListNode* prev = nullptr;\n    while (head) {\n        ListNode* next = head->next;\n        head->next = prev;\n        prev = head;\n        head = next;\n    }\n    return prev;\n}\n// Time: O(n)  Space: O(1)", "explanation": "Iteratively walk the list while rewiring each node's next pointer to point backward to the previous node, using a temp variable so the rest of the list isn't lost.", "example": {"input": "head = [1,2,3,4,5]", "output": "[5,4,3,2,1]"}}, {"category": "Linked List", "title": "Middle of the Linked List", "difficulty": "Easy", "code": "struct ListNode { int val; ListNode* next; ListNode(int x): val(x), next(nullptr) {} };\n\nListNode* middleNode(ListNode* head) {\n    ListNode *slow = head, *fast = head;\n    while (fast && fast->next) {\n        slow = slow->next;\n        fast = fast->next->next;\n    }\n    return slow;\n}\n// Slow/Fast Pointers - Time: O(n)  Space: O(1)", "explanation": "Slow/fast pointer technique: fast moves two steps for every one step of slow, so when fast reaches the end, slow sits at the middle.", "example": {"input": "head = [1,2,3,4,5]", "output": "[3,4,5]"}}, {"category": "Linked List", "title": "Merge Two Sorted Lists", "difficulty": "Easy", "code": "struct ListNode { int val; ListNode* next; ListNode(int x): val(x), next(nullptr) {} };\n\nListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {\n    ListNode dummy(0);\n    ListNode* tail = &dummy;\n    while (l1 && l2) {\n        if (l1->val <= l2->val) { tail->next = l1; l1 = l1->next; }\n        else { tail->next = l2; l2 = l2->next; }\n        tail = tail->next;\n    }\n    tail->next = l1 ? l1 : l2;\n    return dummy.next;\n}\n// Time: O(n + m)  Space: O(1)", "explanation": "Use a dummy head and a tail pointer; repeatedly attach whichever of the two current nodes has the smaller value, then attach whatever remains of the longer list.", "example": {"input": "l1 = [1,2,4], l2 = [1,3,4]", "output": "[1,1,2,3,4,4]"}}, {"category": "Linked List", "title": "Linked List Cycle", "difficulty": "Easy", "code": "struct ListNode { int val; ListNode* next; ListNode(int x): val(x), next(nullptr) {} };\n\nbool hasCycle(ListNode *head) {\n    ListNode *slow = head, *fast = head;\n    while (fast && fast->next) {\n        slow = slow->next;\n        fast = fast->next->next;\n        if (slow == fast) return true;\n    }\n    return false;\n}\n// Floyd's Cycle Detection - Time: O(n)  Space: O(1)", "explanation": "Floyd's tortoise and hare: a slow pointer and a fast pointer traverse the list; if there's a cycle they eventually meet, otherwise the fast pointer reaches null.", "example": {"input": "head = [3,2,0,-4], pos = 1 (tail connects to index 1)", "output": "true"}}, {"category": "Linked List", "title": "Remove Nth Node From End of List", "difficulty": "Medium", "code": "struct ListNode { int val; ListNode* next; ListNode(int x): val(x), next(nullptr) {} };\n\nListNode* removeNthFromEnd(ListNode* head, int n) {\n    ListNode dummy(0); dummy.next = head;\n    ListNode *fast = &dummy, *slow = &dummy;\n    for (int i = 0; i < n; i++) fast = fast->next;\n    while (fast->next) { fast = fast->next; slow = slow->next; }\n    ListNode* toDelete = slow->next;\n    slow->next = slow->next->next;\n    delete toDelete;\n    return dummy.next;\n}\n// Two Pointers - Time: O(n)  Space: O(1)", "explanation": "Advance a fast pointer n steps ahead of a slow pointer, then move both together until fast reaches the end; slow now sits just before the node to remove.", "example": {"input": "head = [1,2,3,4,5], n = 2", "output": "[1,2,3,5]"}}, {"category": "Linked List", "title": "Reorder List", "difficulty": "Medium", "code": "struct ListNode { int val; ListNode* next; ListNode(int x): val(x), next(nullptr) {} };\n\nvoid reorderList(ListNode* head) {\n    if (!head || !head->next) return;\n    // find middle\n    ListNode *slow = head, *fast = head;\n    while (fast->next && fast->next->next) { slow = slow->next; fast = fast->next->next; }\n    // reverse second half\n    ListNode* second = slow->next;\n    slow->next = nullptr;\n    ListNode* prev = nullptr;\n    while (second) {\n        ListNode* nxt = second->next;\n        second->next = prev;\n        prev = second;\n        second = nxt;\n    }\n    // merge two halves\n    ListNode *first = head, *sec = prev;\n    while (sec) {\n        ListNode* t1 = first->next;\n        ListNode* t2 = sec->next;\n        first->next = sec;\n        sec->next = t1;\n        first = t1;\n        sec = t2;\n    }\n}\n// Time: O(n)  Space: O(1)", "explanation": "Find the middle with slow/fast pointers, reverse the second half, then merge the two halves by alternately splicing nodes from the front and the reversed back half.", "example": {"input": "head = [1,2,3,4]", "output": "[1,4,2,3]"}}, {"category": "Linked List", "title": "LRU Cache", "difficulty": "Medium", "code": "class LRUCache {\n    int cap;\n    list<pair<int,int>> order; // (key, value), front = most recent\n    unordered_map<int, list<pair<int,int>>::iterator> mp;\npublic:\n    LRUCache(int capacity) : cap(capacity) {}\n\n    int get(int key) {\n        if (!mp.count(key)) return -1;\n        order.splice(order.begin(), order, mp[key]);\n        return mp[key]->second;\n    }\n\n    void put(int key, int value) {\n        if (mp.count(key)) {\n            order.erase(mp[key]);\n        } else if (order.size() == cap) {\n            int lruKey = order.back().first;\n            order.pop_back();\n            mp.erase(lruKey);\n        }\n        order.push_front({key, value});\n        mp[key] = order.begin();\n    }\n};\n// get/put - Time: O(1)  Space: O(capacity)", "explanation": "Combine a doubly linked list (tracking recency order) with a hash map (key to list iterator) so both get and put run in O(1): moving/inserting at the front marks recent use, and the back of the list is evicted when over capacity.", "example": {"input": "capacity=2; put(1,1); put(2,2); get(1); put(3,3) evicts key 2", "output": "get(1) = 1, get(2) = -1"}}, {"category": "Stack & Queue", "title": "Valid Parentheses", "difficulty": "Easy", "code": "bool isValid(string s) {\n    stack<char> st;\n    for (char c : s) {\n        if (c == '(' || c == '[' || c == '{') st.push(c);\n        else {\n            if (st.empty()) return false;\n            char top = st.top(); st.pop();\n            if ((c == ')' && top != '(') ||\n                (c == ']' && top != '[') ||\n                (c == '}' && top != '{')) return false;\n        }\n    }\n    return st.empty();\n}\n// Time: O(n)  Space: O(n)", "explanation": "Push opening brackets onto a stack; on a closing bracket, check that it matches the type on top of the stack and pop it. The string is valid only if the stack ends empty.", "example": {"input": "s = \"()[]{}\"", "output": "true"}}, {"category": "Stack & Queue", "title": "Implement Queue using Stacks", "difficulty": "Easy", "code": "class MyQueue {\n    stack<int> in, out;\npublic:\n    void push(int x) { in.push(x); }\n\n    int pop() {\n        peek();\n        int val = out.top(); out.pop();\n        return val;\n    }\n\n    int peek() {\n        if (out.empty())\n            while (!in.empty()) { out.push(in.top()); in.pop(); }\n        return out.top();\n    }\n\n    bool empty() { return in.empty() && out.empty(); }\n};\n// Amortized Time: O(1) per op  Space: O(n)", "explanation": "Keep an 'in' stack for pushes and an 'out' stack for pops; when 'out' is empty, dump all of 'in' into it, which reverses the order so the oldest element ends up on top.", "example": {"input": "push(1); push(2); peek()", "output": "1"}}, {"category": "Stack & Queue", "title": "Min Stack", "difficulty": "Medium", "code": "class MinStack {\n    stack<pair<int,int>> st; // {value, currentMin}\npublic:\n    void push(int val) {\n        int mn = st.empty() ? val : min(val, st.top().second);\n        st.push({val, mn});\n    }\n    void pop() { st.pop(); }\n    int top() { return st.top().first; }\n    int getMin() { return st.top().second; }\n};\n// All ops - Time: O(1)  Space: O(n)", "explanation": "Each stack entry stores both the pushed value and the minimum value seen so far up to that point, so getMin() is always just a peek at the top.", "example": {"input": "push(-2); push(0); push(-3); getMin()", "output": "-3"}}, {"category": "Stack & Queue", "title": "Daily Temperatures", "difficulty": "Medium", "code": "vector<int> dailyTemperatures(vector<int>& temperatures) {\n    int n = temperatures.size();\n    vector<int> res(n, 0);\n    stack<int> st; // indices, decreasing temps\n    for (int i = 0; i < n; i++) {\n        while (!st.empty() && temperatures[i] > temperatures[st.top()]) {\n            int idx = st.top(); st.pop();\n            res[idx] = i - idx;\n        }\n        st.push(i);\n    }\n    return res;\n}\n// Monotonic Stack - Time: O(n)  Space: O(n)", "explanation": "Maintain a monotonically decreasing stack of indices; whenever the current temperature exceeds the temperature at the index on top of the stack, that's the answer (days to wait) for that index.", "example": {"input": "temperatures = [73,74,75,71,69,72,76,73]", "output": "[1,1,4,2,1,1,0,0]"}}, {"category": "Stack & Queue", "title": "Next Greater Element I", "difficulty": "Easy", "code": "vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums2) {\n    unordered_map<int,int> nextGreater;\n    stack<int> st;\n    for (int num : nums2) {\n        while (!st.empty() && st.top() < num) {\n            nextGreater[st.top()] = num;\n            st.pop();\n        }\n        st.push(num);\n    }\n    vector<int> res;\n    for (int num : nums1) res.push_back(nextGreater.count(num) ? nextGreater[num] : -1);\n    return res;\n}\n// Monotonic Stack - Time: O(n + m)  Space: O(n)", "explanation": "Compute the next-greater value for every element of nums2 with a monotonic decreasing stack, store the results in a map, then look up each element of nums1.", "example": {"input": "nums1 = [4,1,2], nums2 = [1,3,4,2]", "output": "[-1,3,-1]"}}, {"category": "Stack & Queue", "title": "Evaluate Reverse Polish Notation", "difficulty": "Medium", "code": "int evalRPN(vector<string>& tokens) {\n    stack<int> st;\n    for (string& tok : tokens) {\n        if (tok == \"+\" || tok == \"-\" || tok == \"*\" || tok == \"/\") {\n            int b = st.top(); st.pop();\n            int a = st.top(); st.pop();\n            if (tok == \"+\") st.push(a + b);\n            else if (tok == \"-\") st.push(a - b);\n            else if (tok == \"*\") st.push(a * b);\n            else st.push(a / b);\n        } else {\n            st.push(stoi(tok));\n        }\n    }\n    return st.top();\n}\n// Time: O(n)  Space: O(n)", "explanation": "Scan tokens left to right, pushing numbers onto a stack; whenever an operator appears, pop the top two numbers, apply the operator, and push the result back.", "example": {"input": "tokens = [\"2\",\"1\",\"+\",\"3\",\"*\"]", "output": "9"}}, {"category": "Stack & Queue", "title": "Sliding Window Maximum", "difficulty": "Hard", "code": "vector<int> maxSlidingWindow(vector<int>& nums, int k) {\n    deque<int> dq; // stores indices, decreasing values\n    vector<int> res;\n    for (int i = 0; i < nums.size(); i++) {\n        if (!dq.empty() && dq.front() <= i - k) dq.pop_front();\n        while (!dq.empty() && nums[dq.back()] < nums[i]) dq.pop_back();\n        dq.push_back(i);\n        if (i >= k - 1) res.push_back(nums[dq.front()]);\n    }\n    return res;\n}\n// Monotonic Deque - Time: O(n)  Space: O(k)", "explanation": "Maintain a deque of indices whose corresponding values stay in decreasing order; the front of the deque is always the max of the current window, and out-of-window or smaller indices are discarded as the window slides.", "example": {"input": "nums = [1,3,-1,-3,5,3,6,7], k = 3", "output": "[3,3,5,5,6,7]"}}, {"category": "Trees", "title": "Maximum Depth of Binary Tree", "difficulty": "Easy", "code": "struct TreeNode { int val; TreeNode* left; TreeNode* right; TreeNode(int x): val(x), left(nullptr), right(nullptr) {} };\n\nint maxDepth(TreeNode* root) {\n    if (!root) return 0;\n    return 1 + max(maxDepth(root->left), maxDepth(root->right));\n}\n// Time: O(n)  Space: O(h)", "explanation": "Recursively compute the depth of the left and right subtrees and return 1 plus the larger of the two (0 for a null node).", "example": {"input": "root = [3,9,20,null,null,15,7]", "output": "3"}}, {"category": "Trees", "title": "Same Tree", "difficulty": "Easy", "code": "struct TreeNode { int val; TreeNode* left; TreeNode* right; TreeNode(int x): val(x), left(nullptr), right(nullptr) {} };\n\nbool isSameTree(TreeNode* p, TreeNode* q) {\n    if (!p && !q) return true;\n    if (!p || !q || p->val != q->val) return false;\n    return isSameTree(p->left, q->left) && isSameTree(p->right, q->right);\n}\n// Time: O(n)  Space: O(h)", "explanation": "Recursively compare nodes: both null is equal, one null (not the other) or differing values is unequal, otherwise recurse into left and right children.", "example": {"input": "p = [1,2,3], q = [1,2,3]", "output": "true"}}, {"category": "Trees", "title": "Invert Binary Tree", "difficulty": "Easy", "code": "struct TreeNode { int val; TreeNode* left; TreeNode* right; TreeNode(int x): val(x), left(nullptr), right(nullptr) {} };\n\nTreeNode* invertTree(TreeNode* root) {\n    if (!root) return nullptr;\n    swap(root->left, root->right);\n    invertTree(root->left);\n    invertTree(root->right);\n    return root;\n}\n// Time: O(n)  Space: O(h)", "explanation": "Recursively swap the left and right children of every node in the tree, mirroring it.", "example": {"input": "root = [4,2,7,1,3,6,9]", "output": "[4,7,2,9,6,3,1]"}}, {"category": "Trees", "title": "Binary Tree Level Order Traversal", "difficulty": "Medium", "code": "struct TreeNode { int val; TreeNode* left; TreeNode* right; TreeNode(int x): val(x), left(nullptr), right(nullptr) {} };\n\nvector<vector<int>> levelOrder(TreeNode* root) {\n    vector<vector<int>> res;\n    if (!root) return res;\n    queue<TreeNode*> q;\n    q.push(root);\n    while (!q.empty()) {\n        int sz = q.size();\n        vector<int> level;\n        for (int i = 0; i < sz; i++) {\n            TreeNode* node = q.front(); q.pop();\n            level.push_back(node->val);\n            if (node->left) q.push(node->left);\n            if (node->right) q.push(node->right);\n        }\n        res.push_back(level);\n    }\n    return res;\n}\n// BFS - Time: O(n)  Space: O(n)", "explanation": "Breadth-first traversal using a queue; process one full level at a time by tracking the queue's size before draining it, collecting each level's values into its own list.", "example": {"input": "root = [3,9,20,null,null,15,7]", "output": "[[3],[9,20],[15,7]]"}}, {"category": "Trees", "title": "Lowest Common Ancestor of a Binary Tree", "difficulty": "Medium", "code": "struct TreeNode { int val; TreeNode* left; TreeNode* right; TreeNode(int x): val(x), left(nullptr), right(nullptr) {} };\n\nTreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {\n    if (!root || root == p || root == q) return root;\n    TreeNode* left = lowestCommonAncestor(root->left, p, q);\n    TreeNode* right = lowestCommonAncestor(root->right, p, q);\n    if (left && right) return root;\n    return left ? left : right;\n}\n// Time: O(n)  Space: O(h)", "explanation": "Recursively search left and right subtrees for p and q; if both are found in different subtrees the current node is the LCA, otherwise return whichever side found a match.", "example": {"input": "root = [3,5,1,6,2,0,8], p = 5, q = 1", "output": "3"}}, {"category": "Trees", "title": "Validate Binary Search Tree", "difficulty": "Medium", "code": "struct TreeNode { int val; TreeNode* left; TreeNode* right; TreeNode(int x): val(x), left(nullptr), right(nullptr) {} };\n\nbool validate(TreeNode* node, long lo, long hi) {\n    if (!node) return true;\n    if (node->val <= lo || node->val >= hi) return false;\n    return validate(node->left, lo, node->val) && validate(node->right, node->val, hi);\n}\nbool isValidBST(TreeNode* root) {\n    return validate(root, LONG_MIN, LONG_MAX);\n}\n// Time: O(n)  Space: O(h)", "explanation": "Recursively check each node against a valid (lo, hi) range inherited from its ancestors, narrowing the range while descending so every node respects full BST ordering, not just its immediate parent.", "example": {"input": "root = [2,1,3]", "output": "true"}}, {"category": "Trees", "title": "Serialize and Deserialize Binary Tree", "difficulty": "Hard", "code": "struct TreeNode { int val; TreeNode* left; TreeNode* right; TreeNode(int x): val(x), left(nullptr), right(nullptr) {} };\n\nclass Codec {\npublic:\n    string serialize(TreeNode* root) {\n        if (!root) return \"#,\";\n        return to_string(root->val) + \",\" + serialize(root->left) + serialize(root->right);\n    }\n\n    TreeNode* deserialize(string data) {\n        queue<string> tokens;\n        stringstream ss(data);\n        string tok;\n        while (getline(ss, tok, ',')) tokens.push(tok);\n        return build(tokens);\n    }\n\nprivate:\n    TreeNode* build(queue<string>& tokens) {\n        string val = tokens.front(); tokens.pop();\n        if (val == \"#\") return nullptr;\n        TreeNode* node = new TreeNode(stoi(val));\n        node->left = build(tokens);\n        node->right = build(tokens);\n        return node;\n    }\n};\n// Preorder DFS - Time: O(n)  Space: O(n)", "explanation": "Serialize with a preorder DFS, writing '#' for null nodes and commas as separators; deserialize by reading the tokens back in the same preorder sequence to rebuild the tree recursively.", "example": {"input": "root = [1,2,3,null,null,4,5]", "output": "same tree reconstructed after serialize -> deserialize"}}, {"category": "Binary Search", "title": "Binary Search", "difficulty": "Easy", "code": "int search(vector<int>& nums, int target) {\n    int lo = 0, hi = nums.size() - 1;\n    while (lo <= hi) {\n        int mid = lo + (hi - lo) / 2;\n        if (nums[mid] == target) return mid;\n        else if (nums[mid] < target) lo = mid + 1;\n        else hi = mid - 1;\n    }\n    return -1;\n}\n// Time: O(log n)  Space: O(1)", "explanation": "Repeatedly halve the search range by comparing the middle element to the target, discarding the half that can't contain it.", "example": {"input": "nums = [-1,0,3,5,9,12], target = 9", "output": "4"}}, {"category": "Binary Search", "title": "Search Insert Position", "difficulty": "Easy", "code": "int searchInsert(vector<int>& nums, int target) {\n    int lo = 0, hi = nums.size();\n    while (lo < hi) {\n        int mid = lo + (hi - lo) / 2;\n        if (nums[mid] < target) lo = mid + 1;\n        else hi = mid;\n    }\n    return lo;\n}\n// Time: O(log n)  Space: O(1)", "explanation": "Binary search for the first index whose value is not less than target — that's either where it already is or where it should be inserted.", "example": {"input": "nums = [1,3,5,6], target = 5", "output": "2"}}, {"category": "Binary Search", "title": "First Bad Version", "difficulty": "Easy", "code": "// bool isBadVersion(int version); // API provided\nint firstBadVersion(int n) {\n    int lo = 1, hi = n;\n    while (lo < hi) {\n        int mid = lo + (hi - lo) / 2;\n        if (isBadVersion(mid)) hi = mid;\n        else lo = mid + 1;\n    }\n    return lo;\n}\n// Time: O(log n)  Space: O(1)", "explanation": "Binary search over version numbers using the isBadVersion API as the comparison, converging on the first version that is bad.", "example": {"input": "n = 5, first bad version = 4", "output": "4"}}, {"category": "Binary Search", "title": "Search in Rotated Sorted Array", "difficulty": "Medium", "code": "int search(vector<int>& nums, int target) {\n    int lo = 0, hi = nums.size() - 1;\n    while (lo <= hi) {\n        int mid = lo + (hi - lo) / 2;\n        if (nums[mid] == target) return mid;\n        if (nums[lo] <= nums[mid]) { // left half sorted\n            if (nums[lo] <= target && target < nums[mid]) hi = mid - 1;\n            else lo = mid + 1;\n        } else { // right half sorted\n            if (nums[mid] < target && target <= nums[hi]) lo = mid + 1;\n            else hi = mid - 1;\n        }\n    }\n    return -1;\n}\n// Time: O(log n)  Space: O(1)", "explanation": "Binary search adapted for rotation: at each step figure out which half (left or right of mid) is properly sorted, then check if the target lies in that sorted half to decide which side to keep searching.", "example": {"input": "nums = [4,5,6,7,0,1,2], target = 0", "output": "4"}}, {"category": "Binary Search", "title": "Find First and Last Position in Sorted Array", "difficulty": "Medium", "code": "int findBound(vector<int>& nums, int target, bool findFirst) {\n    int lo = 0, hi = nums.size() - 1, res = -1;\n    while (lo <= hi) {\n        int mid = lo + (hi - lo) / 2;\n        if (nums[mid] == target) {\n            res = mid;\n            if (findFirst) hi = mid - 1;\n            else lo = mid + 1;\n        } else if (nums[mid] < target) lo = mid + 1;\n        else hi = mid - 1;\n    }\n    return res;\n}\nvector<int> searchRange(vector<int>& nums, int target) {\n    return {findBound(nums, target, true), findBound(nums, target, false)};\n}\n// Two Binary Searches - Time: O(log n)  Space: O(1)", "explanation": "Run binary search twice — once biased to keep searching left after a match (to find the first occurrence) and once biased to keep searching right (to find the last occurrence).", "example": {"input": "nums = [5,7,7,8,8,10], target = 8", "output": "[3,4]"}}, {"category": "Binary Search", "title": "Find Peak Element", "difficulty": "Medium", "code": "int findPeakElement(vector<int>& nums) {\n    int lo = 0, hi = nums.size() - 1;\n    while (lo < hi) {\n        int mid = lo + (hi - lo) / 2;\n        if (nums[mid] > nums[mid + 1]) hi = mid;\n        else lo = mid + 1;\n    }\n    return lo;\n}\n// Time: O(log n)  Space: O(1)", "explanation": "Binary search using the slope of the array: if the middle element is smaller than its right neighbor, a peak must exist to the right, otherwise search left (including mid).", "example": {"input": "nums = [1,2,3,1]", "output": "2"}}, {"category": "Binary Search", "title": "Koko Eating Bananas", "difficulty": "Medium", "code": "int minEatingSpeed(vector<int>& piles, int h) {\n    int lo = 1, hi = *max_element(piles.begin(), piles.end());\n    while (lo < hi) {\n        int mid = lo + (hi - lo) / 2;\n        long hours = 0;\n        for (int p : piles) hours += (p + mid - 1) / mid;\n        if (hours <= h) hi = mid;\n        else lo = mid + 1;\n    }\n    return lo;\n}\n// Binary Search on Answer - Time: O(n log maxPile)  Space: O(1)", "explanation": "Binary search on the answer (the eating speed): for a candidate speed, compute total hours needed across all piles, and search for the smallest speed where that total is <= h.", "example": {"input": "piles = [3,6,7,11], h = 8", "output": "4"}}, {"category": "Binary Search", "title": "Median of Two Sorted Arrays", "difficulty": "Hard", "code": "double findMedianSortedArrays(vector<int>& A, vector<int>& B) {\n    if (A.size() > B.size()) return findMedianSortedArrays(B, A);\n    int n = A.size(), m = B.size();\n    int lo = 0, hi = n;\n    while (lo <= hi) {\n        int i = lo + (hi - lo) / 2;\n        int j = (n + m + 1) / 2 - i;\n        int Aleft  = (i == 0) ? INT_MIN : A[i - 1];\n        int Aright = (i == n) ? INT_MAX : A[i];\n        int Bleft  = (j == 0) ? INT_MIN : B[j - 1];\n        int Bright = (j == m) ? INT_MAX : B[j];\n\n        if (Aleft <= Bright && Bleft <= Aright) {\n            if ((n + m) % 2 == 0)\n                return (max(Aleft, Bleft) + min(Aright, Bright)) / 2.0;\n            return max(Aleft, Bleft);\n        } else if (Aleft > Bright) hi = i - 1;\n        else lo = i + 1;\n    }\n    return -1.0;\n}\n// Time: O(log(min(n,m)))  Space: O(1)", "explanation": "Binary search on the smaller array to find a partition point such that all elements on the left of both partitions are <= all elements on the right, giving the median in O(log(min(n,m))).", "example": {"input": "nums1 = [1,3], nums2 = [2]", "output": "2.0"}}, {"category": "Heap / Priority Queue", "title": "Kth Largest Element in an Array", "difficulty": "Medium", "code": "int findKthLargest(vector<int>& nums, int k) {\n    priority_queue<int, vector<int>, greater<int>> minHeap;\n    for (int num : nums) {\n        minHeap.push(num);\n        if (minHeap.size() > k) minHeap.pop();\n    }\n    return minHeap.top();\n}\n// Time: O(n log k)  Space: O(k)", "explanation": "Maintain a min-heap of size k; push every element and pop the smallest whenever the heap exceeds size k, so the heap's top ends up as the kth largest.", "example": {"input": "nums = [3,2,1,5,6,4], k = 2", "output": "5"}}, {"category": "Heap / Priority Queue", "title": "Top K Frequent Elements", "difficulty": "Medium", "code": "vector<int> topKFrequent(vector<int>& nums, int k) {\n    unordered_map<int,int> freq;\n    for (int n : nums) freq[n]++;\n    priority_queue<pair<int,int>> maxHeap; // {freq, value}\n    for (auto& [val, f] : freq) maxHeap.push({f, val});\n    vector<int> res;\n    while (k--) { res.push_back(maxHeap.top().second); maxHeap.pop(); }\n    return res;\n}\n// Time: O(n log n)  Space: O(n)", "explanation": "Count frequencies with a hash map, push (frequency, value) pairs into a max-heap, then pop the top k entries.", "example": {"input": "nums = [1,1,1,2,2,3], k = 2", "output": "[1,2]"}}, {"category": "Heap / Priority Queue", "title": "Merge K Sorted Lists", "difficulty": "Hard", "code": "struct ListNode { int val; ListNode* next; ListNode(int x): val(x), next(nullptr) {} };\n\nListNode* mergeKLists(vector<ListNode*>& lists) {\n    auto cmp = [](ListNode* a, ListNode* b) { return a->val > b->val; };\n    priority_queue<ListNode*, vector<ListNode*>, decltype(cmp)> pq(cmp);\n    for (auto l : lists) if (l) pq.push(l);\n\n    ListNode dummy(0);\n    ListNode* tail = &dummy;\n    while (!pq.empty()) {\n        ListNode* node = pq.top(); pq.pop();\n        tail->next = node;\n        tail = tail->next;\n        if (node->next) pq.push(node->next);\n    }\n    return dummy.next;\n}\n// Time: O(N log k)  Space: O(k)", "explanation": "Push the head of each list into a min-heap ordered by value; repeatedly pop the smallest node, attach it to the result, and push its successor if it has one.", "example": {"input": "lists = [[1,4,5],[1,3,4],[2,6]]", "output": "[1,1,2,3,4,4,5,6]"}}, {"category": "Heap / Priority Queue", "title": "Find Median from Data Stream", "difficulty": "Hard", "code": "class MedianFinder {\n    priority_queue<int> lo; // max-heap, lower half\n    priority_queue<int, vector<int>, greater<int>> hi; // min-heap, upper half\npublic:\n    void addNum(int num) {\n        lo.push(num);\n        hi.push(lo.top()); lo.pop();\n        if (hi.size() > lo.size()) { lo.push(hi.top()); hi.pop(); }\n    }\n\n    double findMedian() {\n        if (lo.size() > hi.size()) return lo.top();\n        return (lo.top() + hi.top()) / 2.0;\n    }\n};\n// addNum: O(log n)  findMedian: O(1)", "explanation": "Keep two heaps — a max-heap for the lower half and a min-heap for the upper half — rebalancing after each insert so they differ in size by at most 1; the median is derived from their tops.", "example": {"input": "addNum(1); addNum(2); findMedian(); addNum(3); findMedian()", "output": "1.5, then 2"}}, {"category": "Heap / Priority Queue", "title": "Task Scheduler", "difficulty": "Medium", "code": "int leastInterval(vector<char>& tasks, int n) {\n    unordered_map<char,int> freq;\n    for (char t : tasks) freq[t]++;\n    priority_queue<int> pq;\n    for (auto& [c, f] : freq) pq.push(f);\n\n    int time = 0;\n    while (!pq.empty()) {\n        vector<int> temp;\n        int cycle = n + 1;\n        int i = 0;\n        for (; i < cycle && !pq.empty(); i++) {\n            int f = pq.top(); pq.pop();\n            if (f > 1) temp.push_back(f - 1);\n            time++;\n        }\n        for (int f : temp) pq.push(f);\n        if (!pq.empty()) time += cycle - i; // idle slots only when work remains\n    }\n    return time;\n}\n// Time: O(n log 26)  Space: O(26)", "explanation": "Greedily schedule the most frequent remaining task first each round using a max-heap; if tasks run out before the cooldown window ends but the heap still has work left afterward, the leftover slots in that round are counted as idle time.", "example": {"input": "tasks = [\"A\",\"A\",\"A\",\"B\",\"B\",\"B\"], n = 2", "output": "8"}}, {"category": "Heap / Priority Queue", "title": "Reorganize String", "difficulty": "Medium", "code": "string reorganizeString(string s) {\n    unordered_map<char,int> freq;\n    for (char c : s) freq[c]++;\n    priority_queue<pair<int,char>> pq;\n    for (auto& [c, f] : freq) pq.push({f, c});\n\n    string res;\n    while (pq.size() >= 2) {\n        auto [f1, c1] = pq.top(); pq.pop();\n        auto [f2, c2] = pq.top(); pq.pop();\n        res += c1; res += c2;\n        if (--f1 > 0) pq.push({f1, c1});\n        if (--f2 > 0) pq.push({f2, c2});\n    }\n    if (!pq.empty()) {\n        auto [f, c] = pq.top();\n        if (f > 1) return \"\";\n        res += c;\n    }\n    return res;\n}\n// Time: O(n log 26)  Space: O(26)", "explanation": "Greedily pick the two most frequent remaining characters each round from a max-heap and place them next to each other, which guarantees no two adjacent characters are ever equal (if a valid arrangement exists).", "example": {"input": "s = \"aab\"", "output": "\"aba\""}}, {"category": "Heap / Priority Queue", "title": "IPO", "difficulty": "Hard", "code": "int findMaximizedCapital(int k, int w, vector<int>& profits, vector<int>& capital) {\n    int n = profits.size();\n    vector<pair<int,int>> projects(n); // {capital, profit}\n    for (int i = 0; i < n; i++) projects[i] = {capital[i], profits[i]};\n    sort(projects.begin(), projects.end());\n\n    priority_queue<int> maxProfitHeap; // affordable profits, max-heap\n    int idx = 0;\n    for (int i = 0; i < k; i++) {\n        while (idx < n && projects[idx].first <= w) {\n            maxProfitHeap.push(projects[idx].second);\n            idx++;\n        }\n        if (maxProfitHeap.empty()) break;\n        w += maxProfitHeap.top();\n        maxProfitHeap.pop();\n    }\n    return w;\n}\n// Time: O(n log n)  Space: O(n)", "explanation": "Sort projects by required capital; at each of k rounds, push all projects now affordable into a max-heap ordered by profit and take the most profitable one, growing available capital greedily.", "example": {"input": "k=2, w=0, profits=[1,2,3], capital=[0,1,1]", "output": "4"}}, {"category": "Graphs", "title": "Number of Islands", "difficulty": "Medium", "code": "void dfs(vector<vector<char>>& grid, int i, int j) {\n    if (i < 0 || i >= grid.size() || j < 0 || j >= grid[0].size() || grid[i][j] != '1') return;\n    grid[i][j] = '0';\n    dfs(grid, i + 1, j); dfs(grid, i - 1, j);\n    dfs(grid, i, j + 1); dfs(grid, i, j - 1);\n}\nint numIslands(vector<vector<char>>& grid) {\n    int count = 0;\n    for (int i = 0; i < grid.size(); i++)\n        for (int j = 0; j < grid[0].size(); j++)\n            if (grid[i][j] == '1') { count++; dfs(grid, i, j); }\n    return count;\n}\n// Time: O(m*n)  Space: O(m*n) recursion", "explanation": "DFS flood-fill from every unvisited land cell, sinking the whole connected island (turning '1's to '0's) so it isn't counted again; count how many times a fresh DFS is triggered.", "example": {"input": "grid with 3 separate connected land clusters of '1's", "output": "3"}}, {"category": "Graphs", "title": "Clone Graph", "difficulty": "Medium", "code": "class Node {\npublic:\n    int val;\n    vector<Node*> neighbors;\n    Node(int _val) { val = _val; }\n};\n\nNode* cloneGraph(Node* node, unordered_map<Node*, Node*>& visited) {\n    if (!node) return nullptr;\n    if (visited.count(node)) return visited[node];\n    Node* clone = new Node(node->val);\n    visited[node] = clone;\n    for (Node* nb : node->neighbors)\n        clone->neighbors.push_back(cloneGraph(nb, visited));\n    return clone;\n}\nNode* cloneGraph(Node* node) {\n    unordered_map<Node*, Node*> visited;\n    return cloneGraph(node, visited);\n}\n// DFS - Time: O(V + E)  Space: O(V)", "explanation": "DFS with a hash map from original node to its clone, so each node is cloned exactly once even with cycles, and neighbor lists are recursively rebuilt using the map.", "example": {"input": "adjList = [[2,4],[1,3],[2,4],[1,3]]", "output": "an identical cloned graph structure"}}, {"category": "Graphs", "title": "Flood Fill", "difficulty": "Easy", "code": "void fill(vector<vector<int>>& image, int i, int j, int oldColor, int newColor) {\n    if (i < 0 || i >= image.size() || j < 0 || j >= image[0].size() || image[i][j] != oldColor) return;\n    image[i][j] = newColor;\n    fill(image, i + 1, j, oldColor, newColor);\n    fill(image, i - 1, j, oldColor, newColor);\n    fill(image, i, j + 1, oldColor, newColor);\n    fill(image, i, j - 1, oldColor, newColor);\n}\nvector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int color) {\n    if (image[sr][sc] != color) fill(image, sr, sc, image[sr][sc], color);\n    return image;\n}\n// Time: O(m*n)  Space: O(m*n)", "explanation": "DFS from the starting pixel, recoloring it and recursively recoloring any 4-directionally adjacent pixel that still has the original color.", "example": {"input": "image, sr=1, sc=1, color=2", "output": "image with the connected region repainted to 2"}}, {"category": "Graphs", "title": "Course Schedule", "difficulty": "Medium", "code": "bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {\n    vector<vector<int>> graph(numCourses);\n    vector<int> indegree(numCourses, 0);\n    for (auto& p : prerequisites) {\n        graph[p[1]].push_back(p[0]);\n        indegree[p[0]]++;\n    }\n    queue<int> q;\n    for (int i = 0; i < numCourses; i++) if (indegree[i] == 0) q.push(i);\n\n    int visited = 0;\n    while (!q.empty()) {\n        int course = q.front(); q.pop();\n        visited++;\n        for (int next : graph[course])\n            if (--indegree[next] == 0) q.push(next);\n    }\n    return visited == numCourses;\n}\n// Topological Sort (Kahn's) - Time: O(V + E)  Space: O(V + E)", "explanation": "Model prerequisites as a directed graph and run Kahn's topological sort (BFS from zero-indegree nodes); if all courses get visited, there's no cycle and the schedule is feasible.", "example": {"input": "numCourses = 2, prerequisites = [[1,0]]", "output": "true"}}, {"category": "Graphs", "title": "Pacific Atlantic Water Flow", "difficulty": "Medium", "code": "void dfs(vector<vector<int>>& heights, vector<vector<bool>>& visited, int i, int j) {\n    visited[i][j] = true;\n    int dirs[4][2] = {{1,0},{-1,0},{0,1},{0,-1}};\n    for (auto& d : dirs) {\n        int ni = i + d[0], nj = j + d[1];\n        if (ni >= 0 && ni < heights.size() && nj >= 0 && nj < heights[0].size() &&\n            !visited[ni][nj] && heights[ni][nj] >= heights[i][j])\n            dfs(heights, visited, ni, nj);\n    }\n}\nvector<vector<int>> pacificAtlantic(vector<vector<int>>& heights) {\n    int m = heights.size(), n = heights[0].size();\n    vector<vector<bool>> pac(m, vector<bool>(n, false)), atl(m, vector<bool>(n, false));\n    for (int i = 0; i < m; i++) { dfs(heights, pac, i, 0); dfs(heights, atl, i, n - 1); }\n    for (int j = 0; j < n; j++) { dfs(heights, pac, 0, j); dfs(heights, atl, m - 1, j); }\n\n    vector<vector<int>> res;\n    for (int i = 0; i < m; i++)\n        for (int j = 0; j < n; j++)\n            if (pac[i][j] && atl[i][j]) res.push_back({i, j});\n    return res;\n}\n// Multi-source DFS - Time: O(m*n)  Space: O(m*n)", "explanation": "Multi-source DFS from all Pacific-border and Atlantic-border cells separately, moving inland only when a neighbor's height is >= the current cell's, marking reachability; the answer is cells reachable from both oceans.", "example": {"input": "heights matrix", "output": "list of [row,col] cells that can flow to both oceans"}}, {"category": "Graphs", "title": "Word Ladder", "difficulty": "Hard", "code": "int ladderLength(string beginWord, string endWord, vector<string>& wordList) {\n    unordered_set<string> dict(wordList.begin(), wordList.end());\n    if (!dict.count(endWord)) return 0;\n\n    queue<string> q;\n    q.push(beginWord);\n    int steps = 1;\n    while (!q.empty()) {\n        int sz = q.size();\n        for (int i = 0; i < sz; i++) {\n            string word = q.front(); q.pop();\n            if (word == endWord) return steps;\n            for (int j = 0; j < word.size(); j++) {\n                char orig = word[j];\n                for (char c = 'a'; c <= 'z'; c++) {\n                    word[j] = c;\n                    if (dict.count(word)) {\n                        dict.erase(word);\n                        q.push(word);\n                    }\n                }\n                word[j] = orig;\n            }\n        }\n        steps++;\n    }\n    return 0;\n}\n// BFS - Time: O(n * 26 * L)  Space: O(n)", "explanation": "BFS over the word graph where edges connect words differing by one letter, generated on the fly by trying every letter substitution at every position and checking against the word set.", "example": {"input": "beginWord = \"hit\", endWord = \"cog\", wordList = [\"hot\",\"dot\",\"dog\",\"lot\",\"log\",\"cog\"]", "output": "5"}}, {"category": "Graphs", "title": "Network Delay Time", "difficulty": "Medium", "code": "int networkDelayTime(vector<vector<int>>& times, int n, int k) {\n    vector<vector<pair<int,int>>> graph(n + 1); // node -> {neighbor, weight}\n    for (auto& t : times) graph[t[0]].push_back({t[1], t[2]});\n\n    vector<int> dist(n + 1, INT_MAX);\n    dist[k] = 0;\n    priority_queue<pair<int,int>, vector<pair<int,int>>, greater<>> pq; // {dist, node}\n    pq.push({0, k});\n\n    while (!pq.empty()) {\n        auto [d, u] = pq.top(); pq.pop();\n        if (d > dist[u]) continue;\n        for (auto& [v, w] : graph[u]) {\n            if (dist[u] + w < dist[v]) {\n                dist[v] = dist[u] + w;\n                pq.push({dist[v], v});\n            }\n        }\n    }\n    int maxDist = 0;\n    for (int i = 1; i <= n; i++) {\n        if (dist[i] == INT_MAX) return -1;\n        maxDist = max(maxDist, dist[i]);\n    }\n    return maxDist;\n}\n// Dijkstra's Algorithm - Time: O(E log V)  Space: O(V + E)", "explanation": "Dijkstra's algorithm from the source node using a min-heap keyed by current shortest distance, relaxing edges as shorter paths are found; the answer is the max distance among all reachable nodes.", "example": {"input": "times = [[2,1,1],[2,3,1],[3,4,1]], n = 4, k = 2", "output": "2"}}, {"category": "Dynamic Programming", "title": "Climbing Stairs", "difficulty": "Easy", "code": "int climbStairs(int n) {\n    if (n <= 2) return n;\n    int prev2 = 1, prev1 = 2;\n    for (int i = 3; i <= n; i++) {\n        int cur = prev1 + prev2;\n        prev2 = prev1;\n        prev1 = cur;\n    }\n    return prev1;\n}\n// Time: O(n)  Space: O(1)", "explanation": "This is really Fibonacci: the number of ways to reach step n equals the ways to reach step n-1 plus the ways to reach step n-2, computed bottom-up with two rolling variables.", "example": {"input": "n = 3", "output": "3"}}, {"category": "Dynamic Programming", "title": "House Robber", "difficulty": "Medium", "code": "int rob(vector<int>& nums) {\n    int prev2 = 0, prev1 = 0;\n    for (int num : nums) {\n        int cur = max(prev1, prev2 + num);\n        prev2 = prev1;\n        prev1 = cur;\n    }\n    return prev1;\n}\n// Time: O(n)  Space: O(1)", "explanation": "DP where at each house you either skip it (carry forward the best from before) or rob it (best from two houses back plus its value); track just two rolling values.", "example": {"input": "nums = [1,2,3,1]", "output": "4"}}, {"category": "Dynamic Programming", "title": "Coin Change", "difficulty": "Medium", "code": "int coinChange(vector<int>& coins, int amount) {\n    vector<int> dp(amount + 1, amount + 1);\n    dp[0] = 0;\n    for (int a = 1; a <= amount; a++)\n        for (int c : coins)\n            if (c <= a) dp[a] = min(dp[a], dp[a - c] + 1);\n    return dp[amount] > amount ? -1 : dp[amount];\n}\n// Unbounded Knapsack style - Time: O(amount * coins)  Space: O(amount)", "explanation": "Bottom-up DP where dp[a] holds the fewest coins to make amount a, built by trying every coin as the 'last coin used' for each amount from 1 up to the target.", "example": {"input": "coins = [1,2,5], amount = 11", "output": "3"}}, {"category": "Dynamic Programming", "title": "Longest Increasing Subsequence", "difficulty": "Medium", "code": "int lengthOfLIS(vector<int>& nums) {\n    vector<int> tails; // tails[i] = smallest tail of increasing subseq of length i+1\n    for (int num : nums) {\n        auto it = lower_bound(tails.begin(), tails.end(), num);\n        if (it == tails.end()) tails.push_back(num);\n        else *it = num;\n    }\n    return tails.size();\n}\n// Binary Search + Patience Sorting - Time: O(n log n)  Space: O(n)", "explanation": "Maintain a 'tails' array where tails[i] is the smallest possible tail value of an increasing subsequence of length i+1; binary search each new number's position to update it in O(log n).", "example": {"input": "nums = [10,9,2,5,3,7,101,18]", "output": "4"}}, {"category": "Dynamic Programming", "title": "Partition Equal Subset Sum", "difficulty": "Medium", "code": "bool canPartition(vector<int>& nums) {\n    int sum = accumulate(nums.begin(), nums.end(), 0);\n    if (sum % 2 != 0) return false;\n    int target = sum / 2;\n    vector<bool> dp(target + 1, false);\n    dp[0] = true;\n    for (int num : nums)\n        for (int j = target; j >= num; j--)\n            dp[j] = dp[j] || dp[j - num];\n    return dp[target];\n}\n// 0/1 Knapsack - Time: O(n * target)  Space: O(target)", "explanation": "Reduces to a 0/1 knapsack: can a subset sum to half the total? A boolean DP array tracks which sums are reachable, updated in reverse order per number to avoid reusing an item twice.", "example": {"input": "nums = [1,5,11,5]", "output": "true"}}, {"category": "Dynamic Programming", "title": "Longest Common Subsequence", "difficulty": "Medium", "code": "int longestCommonSubsequence(string text1, string text2) {\n    int m = text1.size(), n = text2.size();\n    vector<vector<int>> dp(m + 1, vector<int>(n + 1, 0));\n    for (int i = 1; i <= m; i++)\n        for (int j = 1; j <= n; j++)\n            dp[i][j] = (text1[i-1] == text2[j-1]) ? dp[i-1][j-1] + 1\n                                                   : max(dp[i-1][j], dp[i][j-1]);\n    return dp[m][n];\n}\n// Time: O(m*n)  Space: O(m*n)", "explanation": "Classic 2D DP: dp[i][j] extends the match by 1 when the current characters agree, otherwise takes the best of dropping a character from either string.", "example": {"input": "text1 = \"abcde\", text2 = \"ace\"", "output": "3"}}, {"category": "Dynamic Programming", "title": "Edit Distance", "difficulty": "Hard", "code": "int minDistance(string word1, string word2) {\n    int m = word1.size(), n = word2.size();\n    vector<vector<int>> dp(m + 1, vector<int>(n + 1, 0));\n    for (int i = 0; i <= m; i++) dp[i][0] = i;\n    for (int j = 0; j <= n; j++) dp[0][j] = j;\n\n    for (int i = 1; i <= m; i++)\n        for (int j = 1; j <= n; j++) {\n            if (word1[i-1] == word2[j-1]) dp[i][j] = dp[i-1][j-1];\n            else dp[i][j] = 1 + min({dp[i-1][j-1], dp[i-1][j], dp[i][j-1]});\n        }\n    return dp[m][n];\n}\n// Time: O(m*n)  Space: O(m*n)", "explanation": "2D DP where dp[i][j] is the min edits to convert the first i characters of word1 into the first j of word2 — characters match for free, otherwise take the best of insert/delete/replace (1 + min of three neighbors).", "example": {"input": "word1 = \"horse\", word2 = \"ros\"", "output": "3"}}, {"category": "Dynamic Programming", "title": "Maximum Product Subarray", "difficulty": "Medium", "code": "int maxProduct(vector<int>& nums) {\n    int maxProd = nums[0], minProd = nums[0], result = nums[0];\n    for (int i = 1; i < nums.size(); i++) {\n        if (nums[i] < 0) swap(maxProd, minProd);\n        maxProd = max(nums[i], maxProd * nums[i]);\n        minProd = min(nums[i], minProd * nums[i]);\n        result = max(result, maxProd);\n    }\n    return result;\n}\n// Time: O(n)  Space: O(1)", "explanation": "Track both the max and min running products at each index, since a negative number can flip a very negative product into the new max; swap the two before updating whenever the current number is negative.", "example": {"input": "nums = [2,3,-2,4]", "output": "6"}}, {"category": "Backtracking", "title": "Subsets", "difficulty": "Medium", "code": "void backtrack(vector<int>& nums, int start, vector<int>& path, vector<vector<int>>& res) {\n    res.push_back(path);\n    for (int i = start; i < nums.size(); i++) {\n        path.push_back(nums[i]);\n        backtrack(nums, i + 1, path, res);\n        path.pop_back();\n    }\n}\nvector<vector<int>> subsets(vector<int>& nums) {\n    vector<vector<int>> res;\n    vector<int> path;\n    backtrack(nums, 0, path, res);\n    return res;\n}\n// Time: O(2^n)  Space: O(n)", "explanation": "Backtracking that adds every intermediate 'path' to the result before exploring further, choosing each subsequent element from those after the current start index to avoid duplicates.", "example": {"input": "nums = [1,2,3]", "output": "[[],[1],[1,2],[1,2,3],[1,3],[2],[2,3],[3]]"}}, {"category": "Backtracking", "title": "Permutations", "difficulty": "Medium", "code": "void backtrack(vector<int>& nums, vector<bool>& used, vector<int>& path, vector<vector<int>>& res) {\n    if (path.size() == nums.size()) { res.push_back(path); return; }\n    for (int i = 0; i < nums.size(); i++) {\n        if (used[i]) continue;\n        used[i] = true;\n        path.push_back(nums[i]);\n        backtrack(nums, used, path, res);\n        path.pop_back();\n        used[i] = false;\n    }\n}\nvector<vector<int>> permute(vector<int>& nums) {\n    vector<vector<int>> res;\n    vector<int> path;\n    vector<bool> used(nums.size(), false);\n    backtrack(nums, used, path, res);\n    return res;\n}\n// Time: O(n!)  Space: O(n)", "explanation": "Backtracking that builds paths one element at a time, tracking which numbers are already used, and records a complete permutation once the path reaches full length.", "example": {"input": "nums = [1,2,3]", "output": "6 permutations, e.g. [1,2,3],[1,3,2],[2,1,3]..."}}, {"category": "Backtracking", "title": "Combination Sum", "difficulty": "Medium", "code": "void backtrack(vector<int>& candidates, int target, int start, vector<int>& path, vector<vector<int>>& res) {\n    if (target == 0) { res.push_back(path); return; }\n    for (int i = start; i < candidates.size(); i++) {\n        if (candidates[i] > target) continue;\n        path.push_back(candidates[i]);\n        backtrack(candidates, target - candidates[i], i, path, res); // i, not i+1 (reuse allowed)\n        path.pop_back();\n    }\n}\nvector<vector<int>> combinationSum(vector<int>& candidates, int target) {\n    vector<vector<int>> res;\n    vector<int> path;\n    sort(candidates.begin(), candidates.end());\n    backtrack(candidates, target, 0, path, res);\n    return res;\n}\n// Time: O(2^target)  Space: O(target)", "explanation": "Backtracking that tries each candidate at or above the current one (allowing reuse) and subtracts it from the remaining target, recording a solution when the target hits zero.", "example": {"input": "candidates = [2,3,6,7], target = 7", "output": "[[2,2,3],[7]]"}}, {"category": "Backtracking", "title": "Generate Parentheses", "difficulty": "Medium", "code": "void backtrack(int n, int open, int close, string& path, vector<string>& res) {\n    if (path.size() == 2 * n) { res.push_back(path); return; }\n    if (open < n) { path.push_back('('); backtrack(n, open + 1, close, path, res); path.pop_back(); }\n    if (close < open) { path.push_back(')'); backtrack(n, open, close + 1, path, res); path.pop_back(); }\n}\nvector<string> generateParenthesis(int n) {\n    vector<string> res;\n    string path;\n    backtrack(n, 0, 0, path, res);\n    return res;\n}\n// Time: O(4^n / sqrt(n)) Catalan  Space: O(n)", "explanation": "Backtracking that only adds '(' if fewer than n have been used, and only adds ')' if it wouldn't outnumber the '(' used so far, guaranteeing every generated string is valid.", "example": {"input": "n = 3", "output": "[\"((()))\",\"(()())\",\"(())()\",\"()(())\",\"()()()\"]"}}, {"category": "Backtracking", "title": "Word Search", "difficulty": "Medium", "code": "bool dfs(vector<vector<char>>& board, string& word, int i, int j, int idx) {\n    if (idx == word.size()) return true;\n    if (i < 0 || i >= board.size() || j < 0 || j >= board[0].size() || board[i][j] != word[idx])\n        return false;\n    char temp = board[i][j];\n    board[i][j] = '#';\n    bool found = dfs(board, word, i+1, j, idx+1) || dfs(board, word, i-1, j, idx+1) ||\n                 dfs(board, word, i, j+1, idx+1) || dfs(board, word, i, j-1, idx+1);\n    board[i][j] = temp;\n    return found;\n}\nbool exist(vector<vector<char>>& board, string word) {\n    for (int i = 0; i < board.size(); i++)\n        for (int j = 0; j < board[0].size(); j++)\n            if (dfs(board, word, i, j, 0)) return true;\n    return false;\n}\n// Time: O(m*n*4^L)  Space: O(L)", "explanation": "DFS from every cell, matching the word character by character and temporarily marking visited cells so the same cell isn't reused within one path, restoring it on backtrack.", "example": {"input": "board with word \"ABCCED\"", "output": "true"}}, {"category": "Backtracking", "title": "Palindrome Partitioning", "difficulty": "Medium", "code": "bool isPalindrome(const string& s, int l, int r) {\n    while (l < r) if (s[l++] != s[r--]) return false;\n    return true;\n}\nvoid backtrack(string& s, int start, vector<string>& path, vector<vector<string>>& res) {\n    if (start == s.size()) { res.push_back(path); return; }\n    for (int end = start; end < s.size(); end++) {\n        if (isPalindrome(s, start, end)) {\n            path.push_back(s.substr(start, end - start + 1));\n            backtrack(s, end + 1, path, res);\n            path.pop_back();\n        }\n    }\n}\nvector<vector<string>> partition(string s) {\n    vector<vector<string>> res;\n    vector<string> path;\n    backtrack(s, 0, path, res);\n    return res;\n}\n// Time: O(n * 2^n)  Space: O(n)", "explanation": "Backtracking that tries every prefix of the remaining string as the next partition, only recursing further when that prefix is itself a palindrome.", "example": {"input": "s = \"aab\"", "output": "[[\"a\",\"a\",\"b\"],[\"aa\",\"b\"]]"}}, {"category": "Backtracking", "title": "N-Queens", "difficulty": "Hard", "code": "bool isSafe(vector<string>& board, int row, int col, int n) {\n    for (int i = 0; i < row; i++) if (board[i][col] == 'Q') return false;\n    for (int i = row-1, j = col-1; i >= 0 && j >= 0; i--, j--) if (board[i][j] == 'Q') return false;\n    for (int i = row-1, j = col+1; i >= 0 && j < n; i--, j++) if (board[i][j] == 'Q') return false;\n    return true;\n}\nvoid backtrack(vector<string>& board, int row, int n, vector<vector<string>>& res) {\n    if (row == n) { res.push_back(board); return; }\n    for (int col = 0; col < n; col++) {\n        if (isSafe(board, row, col, n)) {\n            board[row][col] = 'Q';\n            backtrack(board, row + 1, n, res);\n            board[row][col] = '.';\n        }\n    }\n}\nvector<vector<string>> solveNQueens(int n) {\n    vector<vector<string>> res;\n    vector<string> board(n, string(n, '.'));\n    backtrack(board, 0, n, res);\n    return res;\n}\n// Time: O(n!)  Space: O(n^2)", "explanation": "Backtracking places one queen per row, checking column and both diagonals for conflicts before placing, and backtracks when no column in the current row works.", "example": {"input": "n = 4", "output": "2 valid board arrangements"}}, {"category": "Backtracking", "title": "Subsets II", "difficulty": "Medium", "code": "void backtrack(vector<int>& nums, int start, vector<int>& path, vector<vector<int>>& res) {\n    res.push_back(path);\n    for (int i = start; i < nums.size(); i++) {\n        if (i > start && nums[i] == nums[i - 1]) continue;\n        path.push_back(nums[i]);\n        backtrack(nums, i + 1, path, res);\n        path.pop_back();\n    }\n}\nvector<vector<int>> subsetsWithDup(vector<int>& nums) {\n    sort(nums.begin(), nums.end());\n    vector<vector<int>> res;\n    vector<int> path;\n    backtrack(nums, 0, path, res);\n    return res;\n}\n// Time: O(2^n)  Space: O(n)", "explanation": "Same subset backtracking as the basic version, but the array is sorted first and a duplicate value is skipped whenever it repeats the previous choice at the same recursion depth, preventing duplicate subsets.", "example": {"input": "nums = [1,2,2]", "output": "[[],[1],[1,2],[1,2,2],[2],[2,2]]"}}, {"category": "Backtracking", "title": "Combination Sum II", "difficulty": "Medium", "code": "void backtrack(vector<int>& candidates, int target, int start, vector<int>& path, vector<vector<int>>& res) {\n    if (target == 0) { res.push_back(path); return; }\n    for (int i = start; i < candidates.size(); i++) {\n        if (i > start && candidates[i] == candidates[i - 1]) continue;\n        if (candidates[i] > target) break;\n        path.push_back(candidates[i]);\n        backtrack(candidates, target - candidates[i], i + 1, path, res); // i+1, no reuse\n        path.pop_back();\n    }\n}\nvector<vector<int>> combinationSum2(vector<int>& candidates, int target) {\n    sort(candidates.begin(), candidates.end());\n    vector<vector<int>> res;\n    vector<int> path;\n    backtrack(candidates, target, 0, path, res);\n    return res;\n}\n// Time: O(2^n)  Space: O(target)", "explanation": "Backtracking similar to Combination Sum, but each candidate can only be used once (recurse from i+1) and the array is sorted so duplicate values at the same depth are skipped to avoid duplicate combinations.", "example": {"input": "candidates = [10,1,2,7,6,1,5], target = 8", "output": "[[1,1,6],[1,2,5],[1,7],[2,6]]"}}, {"category": "Backtracking", "title": "Rat in a Maze", "difficulty": "Medium", "code": "bool isSafe(vector<vector<int>>& maze, int x, int y, int n) {\n    return x >= 0 && x < n && y >= 0 && y < n && maze[x][y] == 1;\n}\nvoid solve(vector<vector<int>>& maze, int x, int y, int n, vector<vector<int>>& sol, vector<string>& res, string path) {\n    if (x == n - 1 && y == n - 1) { res.push_back(path); return; }\n    int dx[4] = {1, 0, 0, -1};\n    int dy[4] = {0, -1, 1, 0};\n    char dir[4] = {'D', 'L', 'R', 'U'};\n    for (int i = 0; i < 4; i++) {\n        int nx = x + dx[i], ny = y + dy[i];\n        if (isSafe(maze, nx, ny, n) && !sol[nx][ny]) {\n            sol[nx][ny] = 1;\n            solve(maze, nx, ny, n, sol, res, path + dir[i]);\n            sol[nx][ny] = 0;\n        }\n    }\n}\nvector<string> findPath(vector<vector<int>>& maze, int n) {\n    vector<string> res;\n    if (maze[0][0] == 0) return res;\n    vector<vector<int>> sol(n, vector<int>(n, 0));\n    sol[0][0] = 1;\n    solve(maze, 0, 0, n, sol, res, \"\");\n    return res;\n}\n// Backtracking - Time: O(4^(n^2)) worst case  Space: O(n^2)", "explanation": "Backtracking that explores all four directions from the current cell, marking cells visited on the current path, and records a path string whenever the bottom-right cell is reached; visited marks are undone on backtrack to allow other paths.", "example": {"input": "maze = [[1,0,0,0],[1,1,0,1],[1,1,0,0],[0,1,1,1]], n = 4", "output": "[\"DDRDRR\",\"DRDDRR\"]"}}, {"category": "DP Concepts", "title": "Fibonacci", "difficulty": "Easy", "code": "int fib(int n) {\n    if (n <= 1) return n;\n    int prev2 = 0, prev1 = 1;\n    for (int i = 2; i <= n; i++) {\n        int cur = prev1 + prev2;\n        prev2 = prev1;\n        prev1 = cur;\n    }\n    return prev1;\n}\n// Bottom-up DP - Time: O(n)  Space: O(1)", "explanation": "Bottom-up DP: build up from the base cases using two rolling variables instead of recomputing overlapping subproblems recursively.", "example": {"input": "n = 6", "output": "8"}}, {"category": "DP Concepts", "title": "0-1 Knapsack", "difficulty": "Medium", "code": "int knapsack01(vector<int>& wt, vector<int>& val, int W) {\n    int n = wt.size();\n    vector<vector<int>> dp(n + 1, vector<int>(W + 1, 0));\n    for (int i = 1; i <= n; i++) {\n        for (int w = 0; w <= W; w++) {\n            dp[i][w] = dp[i-1][w]; // don't take item i-1\n            if (wt[i-1] <= w)\n                dp[i][w] = max(dp[i][w], dp[i-1][w - wt[i-1]] + val[i-1]); // take it\n        }\n    }\n    return dp[n][W];\n}\n// Each item used at most once - Time: O(n*W)  Space: O(n*W)", "explanation": "2D DP where dp[i][w] considers each item exactly once — either skip it (carry dp[i-1][w] forward) or take it if it fits (dp[i-1][w-weight] + value) — taking the better option.", "example": {"input": "wt = [1,3,4,5], val = [1,4,5,7], W = 7", "output": "9"}}, {"category": "DP Concepts", "title": "Unbounded Knapsack", "difficulty": "Medium", "code": "int unboundedKnapsack(vector<int>& wt, vector<int>& val, int W) {\n    vector<int> dp(W + 1, 0);\n    for (int w = 1; w <= W; w++)\n        for (int i = 0; i < wt.size(); i++)\n            if (wt[i] <= w)\n                dp[w] = max(dp[w], dp[w - wt[i]] + val[i]);\n    return dp[W];\n}\n// Items can repeat (inner loop reuses dp[w]) - Time: O(n*W)  Space: O(W)", "explanation": "Similar to 0-1 knapsack, but items can be reused any number of times, so the DP references dp[w] itself (not a 'previous row') when deciding to take an item again.", "example": {"input": "wt = [1,3,4], val = [1,4,5], W = 7", "output": "8"}}, {"category": "DP Concepts", "title": "LCS (Longest Common Subsequence)", "difficulty": "Medium", "code": "int lcs(string s1, string s2) {\n    int m = s1.size(), n = s2.size();\n    vector<vector<int>> dp(m + 1, vector<int>(n + 1, 0));\n    for (int i = 1; i <= m; i++)\n        for (int j = 1; j <= n; j++)\n            dp[i][j] = (s1[i-1] == s2[j-1]) ? dp[i-1][j-1] + 1\n                                             : max(dp[i-1][j], dp[i][j-1]);\n    return dp[m][n];\n}\n// Classic 2D DP - Time: O(m*n)  Space: O(m*n), reducible to O(min(m,n))", "explanation": "Same 2D DP pattern as the Strings-category version: match characters diagonally when equal, otherwise carry forward the best of skipping one character from either string.", "example": {"input": "s1 = \"ABCBDAB\", s2 = \"BDCABA\"", "output": "4"}}, {"category": "DP Concepts", "title": "Kadane's Algorithm (Arrays)", "difficulty": "Easy", "code": "int kadane(vector<int>& nums) {\n    int maxSoFar = nums[0], maxEndingHere = nums[0];\n    for (int i = 1; i < nums.size(); i++) {\n        maxEndingHere = max(nums[i], maxEndingHere + nums[i]);\n        maxSoFar = max(maxSoFar, maxEndingHere);\n    }\n    return maxSoFar;\n}\n// Maximum Subarray Sum - Time: O(n)  Space: O(1)", "explanation": "At each index, decide whether extending the previous subarray or starting fresh at the current element gives a larger sum, tracking the best sum seen overall.", "example": {"input": "nums = [-2,1,-3,4,-1,2,1,-5,4]", "output": "6"}}, {"category": "DP Concepts", "title": "Catalan Number", "difficulty": "Medium", "code": "long long catalan(int n) {\n    vector<long long> dp(n + 1, 0);\n    dp[0] = 1;\n    for (int i = 1; i <= n; i++)\n        for (int j = 0; j < i; j++)\n            dp[i] += dp[j] * dp[i - 1 - j];\n    return dp[n];\n}\n// C(n) = sum(C(i)*C(n-1-i)) - used in BST count, parentheses, etc.\n// Time: O(n^2)  Space: O(n)", "explanation": "DP where C(n) is built from the sum of products of smaller Catalan numbers (C(i) * C(n-1-i)) — the same recurrence that counts balanced parentheses, BST shapes, and more.", "example": {"input": "n = 4", "output": "14"}}, {"category": "DP Concepts", "title": "DP on Grid (2D Arrays)", "difficulty": "Medium", "code": "int uniquePathsWithObstacles(vector<vector<int>>& grid) {\n    int m = grid.size(), n = grid[0].size();\n    vector<vector<long>> dp(m, vector<long>(n, 0));\n    for (int i = 0; i < m; i++) {\n        for (int j = 0; j < n; j++) {\n            if (grid[i][j] == 1) { dp[i][j] = 0; continue; }\n            if (i == 0 && j == 0) { dp[i][j] = 1; continue; }\n            long fromTop  = (i > 0) ? dp[i-1][j] : 0;\n            long fromLeft = (j > 0) ? dp[i][j-1] : 0;\n            dp[i][j] = fromTop + fromLeft;\n        }\n    }\n    return dp[m-1][n-1];\n}\n// Grid DP (Unique Paths II variant) - Time: O(m*n)  Space: O(m*n)", "explanation": "Standard grid DP: the number of ways to reach a cell is the sum of ways to reach the cell above and the cell to the left, with obstacle cells forced to 0 and the top-left cell seeded as 1.", "example": {"input": "grid = [[0,0,0],[0,1,0],[0,0,0]]", "output": "2"}}, {"category": "Sorting Algorithms", "title": "Merge Sort", "difficulty": "Medium", "code": "void merge(vector<int>& arr, int l, int m, int r) {\n    vector<int> left(arr.begin() + l, arr.begin() + m + 1);\n    vector<int> right(arr.begin() + m + 1, arr.begin() + r + 1);\n    int i = 0, j = 0, k = l;\n    while (i < left.size() && j < right.size())\n        arr[k++] = (left[i] <= right[j]) ? left[i++] : right[j++];\n    while (i < left.size()) arr[k++] = left[i++];\n    while (j < right.size()) arr[k++] = right[j++];\n}\nvoid mergeSort(vector<int>& arr, int l, int r) {\n    if (l >= r) return;\n    int m = l + (r - l) / 2;\n    mergeSort(arr, l, m);\n    mergeSort(arr, m + 1, r);\n    merge(arr, l, m, r);\n}\n// Divide and Conquer - Time: O(n log n)  Space: O(n)", "explanation": "Divide and conquer: recursively split the array in half until subarrays of size 1, then merge sorted halves back together by repeatedly taking the smaller of the two fronts.", "example": {"input": "arr = [38,27,43,3,9,82,10]", "output": "[3,9,10,27,38,43,82]"}}, {"category": "Sorting Algorithms", "title": "Quick Sort", "difficulty": "Medium", "code": "int partition(vector<int>& arr, int low, int high) {\n    int pivot = arr[high];\n    int i = low - 1;\n    for (int j = low; j < high; j++) {\n        if (arr[j] < pivot) swap(arr[++i], arr[j]);\n    }\n    swap(arr[i + 1], arr[high]);\n    return i + 1;\n}\nvoid quickSort(vector<int>& arr, int low, int high) {\n    if (low < high) {\n        int pi = partition(arr, low, high);\n        quickSort(arr, low, pi - 1);\n        quickSort(arr, pi + 1, high);\n    }\n}\n// Average: O(n log n), Worst: O(n^2)  Space: O(log n)", "explanation": "Lomuto partition scheme: pick the last element as pivot, rearrange the array so smaller elements move left of the pivot's final position, then recursively sort the two partitions on either side.", "example": {"input": "arr = [10,7,8,9,1,5]", "output": "[1,5,7,8,9,10]"}}, {"category": "Union Find", "title": "Number of Provinces", "difficulty": "Medium", "code": "int find(vector<int>& parent, int x) {\n    if (parent[x] != x) parent[x] = find(parent, parent[x]);\n    return parent[x];\n}\nvoid unite(vector<int>& parent, vector<int>& rnk, int x, int y) {\n    int rx = find(parent, x), ry = find(parent, y);\n    if (rx == ry) return;\n    if (rnk[rx] < rnk[ry]) swap(rx, ry);\n    parent[ry] = rx;\n    if (rnk[rx] == rnk[ry]) rnk[rx]++;\n}\nint findCircleNum(vector<vector<int>>& isConnected) {\n    int n = isConnected.size();\n    vector<int> parent(n), rnk(n, 0);\n    for (int i = 0; i < n; i++) parent[i] = i;\n    for (int i = 0; i < n; i++)\n        for (int j = i + 1; j < n; j++)\n            if (isConnected[i][j] == 1) unite(parent, rnk, i, j);\n    unordered_set<int> roots;\n    for (int i = 0; i < n; i++) roots.insert(find(parent, i));\n    return roots.size();\n}\n// Union-Find (DSU) - Time: O(n^2 * a(n))  Space: O(n)", "explanation": "Union-Find with path compression and union by rank groups directly-or-indirectly connected cities into sets; the answer is the number of distinct root parents remaining after processing all connections.", "example": {"input": "isConnected = [[1,1,0],[1,1,0],[0,0,1]]", "output": "2"}}, {"category": "Union Find", "title": "Redundant Connection", "difficulty": "Medium", "code": "int find(vector<int>& parent, int x) {\n    while (parent[x] != x) x = parent[x];\n    return x;\n}\nvector<int> findRedundantConnection(vector<vector<int>>& edges) {\n    int n = edges.size();\n    vector<int> parent(n + 1);\n    for (int i = 0; i <= n; i++) parent[i] = i;\n    for (auto& e : edges) {\n        int ru = find(parent, e[0]), rv = find(parent, e[1]);\n        if (ru == rv) return e;\n        parent[ru] = rv;\n    }\n    return {};\n}\n// Union-Find - Time: O(n * a(n))  Space: O(n)", "explanation": "Process edges in order, unioning their endpoints; the first edge whose two endpoints already share a root would create a cycle, making it the redundant connection to remove.", "example": {"input": "edges = [[1,2],[1,3],[2,3]]", "output": "[2,3]"}}, {"category": "Trie", "title": "Implement Trie (Prefix Tree)", "difficulty": "Medium", "code": "class Trie {\n    struct Node {\n        Node* children[26] = {};\n        bool isEnd = false;\n    };\n    Node* root;\npublic:\n    Trie() { root = new Node(); }\n\n    void insert(string word) {\n        Node* cur = root;\n        for (char c : word) {\n            if (!cur->children[c - 'a']) cur->children[c - 'a'] = new Node();\n            cur = cur->children[c - 'a'];\n        }\n        cur->isEnd = true;\n    }\n\n    bool search(string word) {\n        Node* node = find(word);\n        return node && node->isEnd;\n    }\n\n    bool startsWith(string prefix) {\n        return find(prefix) != nullptr;\n    }\n\nprivate:\n    Node* find(string& s) {\n        Node* cur = root;\n        for (char c : s) {\n            if (!cur->children[c - 'a']) return nullptr;\n            cur = cur->children[c - 'a'];\n        }\n        return cur;\n    }\n};\n// insert/search/startsWith - Time: O(L) each  Space: O(total chars)", "explanation": "Each Trie node holds 26 child pointers for lowercase letters plus an end-of-word flag; insert walks/creates nodes character by character, while search and startsWith both walk existing nodes and differ only in whether the final node must be flagged as a complete word.", "example": {"input": "insert(\\\"apple\\\"); search(\\\"apple\\\"); search(\\\"app\\\"); startsWith(\\\"app\\\")", "output": "true, false, true"}}, {"category": "Trie", "title": "Word Search II", "difficulty": "Hard", "code": "struct TrieNode {\n    TrieNode* children[26] = {};\n    string word = \"\";\n};\nvoid addWord(TrieNode* root, const string& w) {\n    TrieNode* cur = root;\n    for (char c : w) {\n        if (!cur->children[c - 'a']) cur->children[c - 'a'] = new TrieNode();\n        cur = cur->children[c - 'a'];\n    }\n    cur->word = w;\n}\nvoid dfs(vector<vector<char>>& board, int i, int j, TrieNode* node, vector<string>& res) {\n    if (i < 0 || i >= board.size() || j < 0 || j >= board[0].size() || board[i][j] == '#') return;\n    char c = board[i][j];\n    TrieNode* next = node->children[c - 'a'];\n    if (!next) return;\n    if (!next->word.empty()) { res.push_back(next->word); next->word = \"\"; }\n    board[i][j] = '#';\n    dfs(board, i + 1, j, next, res); dfs(board, i - 1, j, next, res);\n    dfs(board, i, j + 1, next, res); dfs(board, i, j - 1, next, res);\n    board[i][j] = c;\n}\nvector<string> findWords(vector<vector<char>>& board, vector<string>& words) {\n    TrieNode* root = new TrieNode();\n    for (auto& w : words) addWord(root, w);\n    vector<string> res;\n    for (int i = 0; i < board.size(); i++)\n        for (int j = 0; j < board[0].size(); j++)\n            dfs(board, i, j, root, res);\n    return res;\n}\n// Trie + DFS Backtracking - Time: O(m*n*4^L)  Space: O(sum of word lengths)", "explanation": "Build one Trie from all target words, then DFS from every board cell walking the Trie alongside the grid; this shares prefix work across words and prunes a whole branch as soon as no word matches the path so far, instead of searching for each word independently.", "example": {"input": "board = [[\\\"o\\\",\\\"a\\\",\\\"a\\\",\\\"n\\\"],[\\\"e\\\",\\\"t\\\",\\\"a\\\",\\\"e\\\"],[\\\"i\\\",\\\"h\\\",\\\"k\\\",\\\"r\\\"],[\\\"i\\\",\\\"f\\\",\\\"l\\\",\\\"v\\\"]], words = [\\\"oath\\\",\\\"pea\\\",\\\"eat\\\",\\\"rain\\\"]", "output": "[\\\"eat\\\",\\\"oath\\\"]"}}, {"category": "Cyclic Sort", "title": "Missing Number", "difficulty": "Easy", "code": "int missingNumber(vector<int>& nums) {\n    int n = nums.size();\n    int i = 0;\n    while (i < n) {\n        int correct = nums[i];\n        if (correct < n && nums[i] != nums[correct]) swap(nums[i], nums[correct]);\n        else i++;\n    }\n    for (i = 0; i < n; i++) if (nums[i] != i) return i;\n    return n;\n}\n// Cyclic Sort - Time: O(n)  Space: O(1)", "explanation": "Cyclic sort places each value at its own index in place by repeatedly swapping until every valid number sits where it belongs; the first index that ends up mismatched (or n if none do) is the missing number.", "example": {"input": "nums = [3,0,1]", "output": "2"}}, {"category": "Cyclic Sort", "title": "Find All Duplicates in an Array", "difficulty": "Medium", "code": "vector<int> findDuplicates(vector<int>& nums) {\n    vector<int> res;\n    for (int i = 0; i < nums.size(); i++) {\n        int idx = abs(nums[i]) - 1;\n        if (nums[idx] < 0) res.push_back(idx + 1);\n        else nums[idx] = -nums[idx];\n    }\n    return res;\n}\n// Index Marking - Time: O(n)  Space: O(1) extra", "explanation": "Use each value as an index into the array itself and negate the entry found there; the second time a value's target index is visited it's already negative, revealing a duplicate.", "example": {"input": "nums = [4,3,2,7,8,2,3,1]", "output": "[2,3]"}}, {"category": "Cyclic Sort", "title": "First Missing Positive", "difficulty": "Hard", "code": "int firstMissingPositive(vector<int>& nums) {\n    int n = nums.size();\n    for (int i = 0; i < n; i++) {\n        while (nums[i] > 0 && nums[i] <= n && nums[nums[i] - 1] != nums[i]) {\n            swap(nums[i], nums[nums[i] - 1]);\n        }\n    }\n    for (int i = 0; i < n; i++) if (nums[i] != i + 1) return i + 1;\n    return n + 1;\n}\n// Cyclic Sort - Time: O(n)  Space: O(1)", "explanation": "Cyclic sort places every value v (1 <= v <= n) at index v-1 via swapping; scanning afterward for the first index whose value doesn't match its position reveals the smallest missing positive integer.", "example": {"input": "nums = [3,4,-1,1]", "output": "2"}}, {"category":"Math","title":"Prime Numbers","difficulty":"Easy","code":"bool isPrime(int n) {\n    if (n < 2) return false;\n\n    for (int i = 2; i * i <= n; i++) {\n        if (n % i == 0) {\n            return false;\n        }\n    }\n    return true;\n}\n\nvector<int> Prime(int num) {\n    vector<int> ans;\n\n    for (int i = 2; i <= num; i++) {\n        if (isPrime(i)) {\n            ans.push_back(i);\n        }\n    }\n\n    return ans;\n}\n// Trial Division - Time: O(n * sqrt(n))  Space: O(1) extra","explanation":"Check divisibility only up to the square root of each number, because any larger factor would pair with a smaller one already tested. Use that helper while scanning from 2 to num to collect all prime values.","example":{"input":"num = 10","output":"[2,3,5,7]"}}, {"category":"Math","title":"Integer to Roman","difficulty":"Medium","code":"string intToRoman(int num) {\n    vector<pair<int, string>> value = {\n        {1000, \"M\"}, {900, \"CM\"}, {500, \"D\"}, {400, \"CD\"},\n        {100, \"C\"}, {90, \"XC\"}, {50, \"L\"}, {40, \"XL\"},\n        {10, \"X\"}, {9, \"IX\"}, {5, \"V\"}, {4, \"IV\"}, {1, \"I\"}\n    };\n\n    string ans = \"\";\n\n    for (auto it : value) {\n        while (num >= it.first) {\n            ans += it.second;\n            num -= it.first;\n        }\n    }\n\n    return ans;\n}\n// Greedy - Time: O(1)  Space: O(1)","explanation":"Store Roman symbols from largest to smallest, including subtractive cases like 900 and 4. Repeatedly append the largest symbol that still fits and subtract its value until the number becomes zero.","example":{"input":"num = 1994","output":"\"MCMXCIV\""}}, {"category": "Bit Manipulation", "title": "Single Number", "difficulty": "Easy", "code": "int singleNumber(vector<int>& nums) {\n    int result = 0;\n    for (int n : nums) result ^= n;\n    return result;\n}\n// XOR - Time: O(n)  Space: O(1)", "explanation": "XOR is its own inverse and commutative, so XOR-ing every number together cancels all pairs, leaving only the number that appears once.", "example": {"input": "nums = [4,1,2,1,2]", "output": "4"}}, {"category": "Bit Manipulation", "title": "Number of 1 Bits", "difficulty": "Easy", "code": "int hammingWeight(uint32_t n) {\n    int count = 0;\n    while (n) {\n        n &= (n - 1);\n        count++;\n    }\n    return count;\n}\n// Brian Kernighan's Algorithm - Time: O(k) where k = set bits  Space: O(1)", "explanation": "Brian Kernighan's trick: n and (n-1) clears the lowest set bit each iteration, so the loop runs exactly once per 1-bit in n.", "example": {"input": "n = 00000000000000000000000000001011", "output": "3"}}, {"category": "Bit Manipulation", "title": "Counting Bits", "difficulty": "Easy", "code": "vector<int> countBits(int n) {\n    vector<int> dp(n + 1, 0);\n    for (int i = 1; i <= n; i++) dp[i] = dp[i >> 1] + (i & 1);\n    return dp;\n}\n// DP + Bit Trick - Time: O(n)  Space: O(n)", "explanation": "dp[i] reuses dp[i>>1], the popcount of i with its lowest bit removed, plus 1 if that lowest bit was set, turning the whole table into an O(n) DP instead of counting bits from scratch for every number.", "example": {"input": "n = 5", "output": "[0,1,1,2,1,2]"}}, {"category": "Bit Manipulation", "title": "Sum of Two Integers", "difficulty": "Medium", "code": "int getSum(int a, int b) {\n    while (b != 0) {\n        int carry = (unsigned int)(a & b) << 1;\n        a = a ^ b;\n        b = carry;\n    }\n    return a;\n}\n// Bitwise Add - Time: O(1) (bounded by int width)  Space: O(1)", "explanation": "XOR adds bits without carrying, while AND-then-shift computes exactly the carry bits; repeating this until there's no carry left simulates addition using only bitwise operations.", "example": {"input": "a = 2, b = 3", "output": "5"}}, {"category": "Greedy", "title": "Jump Game", "difficulty": "Medium", "code": "bool canJump(vector<int>& nums) {\n    int reach = 0;\n    for (int i = 0; i < nums.size(); i++) {\n        if (i > reach) return false;\n        reach = max(reach, i + nums[i]);\n    }\n    return true;\n}\n// Greedy - Time: O(n)  Space: O(1)", "explanation": "Greedily track the farthest index reachable so far while scanning left to right; if the current index is ever beyond that reach, the end is unreachable.", "example": {"input": "nums = [2,3,1,1,4]", "output": "true"}}, {"category": "Greedy", "title": "Gas Station", "difficulty": "Medium", "code": "int canCompleteCircuit(vector<int>& gas, vector<int>& cost) {\n    int total = 0, tank = 0, start = 0;\n    for (int i = 0; i < gas.size(); i++) {\n        int diff = gas[i] - cost[i];\n        total += diff;\n        tank += diff;\n        if (tank < 0) { start = i + 1; tank = 0; }\n    }\n    return total >= 0 ? start : -1;\n}\n// Greedy - Time: O(n)  Space: O(1)", "explanation": "Greedily reset the candidate starting station whenever the running tank goes negative, since no station before that point could have reached this far either; the route is feasible overall only if the total gas covers total cost.", "example": {"input": "gas = [1,2,3,4,5], cost = [3,4,5,1,2]", "output": "3"}}, {"category": "Graphs", "title": "Course Schedule II", "difficulty": "Medium", "code": "vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites) {\n    vector<vector<int>> graph(numCourses);\n    vector<int> indegree(numCourses, 0);\n    for (auto& p : prerequisites) {\n        graph[p[1]].push_back(p[0]);\n        indegree[p[0]]++;\n    }\n    queue<int> q;\n    for (int i = 0; i < numCourses; i++) if (indegree[i] == 0) q.push(i);\n\n    vector<int> order;\n    while (!q.empty()) {\n        int course = q.front(); q.pop();\n        order.push_back(course);\n        for (int next : graph[course])\n            if (--indegree[next] == 0) q.push(next);\n    }\n    return order.size() == numCourses ? order : vector<int>{};\n}\n// Topological Sort (Kahn's) - Time: O(V + E)  Space: O(V + E)", "explanation": "Same Kahn's algorithm as Course Schedule, but this time the BFS processing order itself is the answer, a valid course sequence, and an empty result signals a cycle.", "example": {"input": "numCourses = 4, prerequisites = [[1,0],[2,0],[3,1],[3,2]]", "output": "[0,1,2,3] (one valid order)"}}];
 
 const CATEGORY_ORDER = [...new Set(PROBLEMS.map(p => p.category))];
 
 const PATTERN_INFO = {"Arrays": "Not one single trick but a family of array-native techniques — prefix/suffix products, running min/max tracking, in-place index rewriting (Boyer-Moore voting, cyclic overwrite). Reach for these when you need O(n) or O(n log n) and can exploit direct index access instead of an extra data structure.", "Strings": "Character-level techniques layered on top of array patterns — frequency counting with fixed-size arrays/hash maps, two-pointer scanning, and sliding windows applied to text. Used whenever the problem hinges on character comparisons, anagrams, or substring structure.", "Sliding Window": "Maintain a contiguous window over the array/string; expand the right edge to grow it and contract the left edge when a constraint is violated. Used for subarray/substring problems with a size or validity condition, turning an O(n^2) brute force into a single O(n) pass.", "Two Pointer": "Two indices move through a sorted or symmetric structure — from opposite ends inward, or both forward at different speeds. Used to avoid nested loops in pair/triplet-sum problems, partitioning, and comparisons from both ends of a sequence.", "Linked List": "Pointer-rewiring techniques on singly/doubly linked structures — dummy head nodes to simplify edge cases, fast/slow pointers for cycle or midpoint detection, and iterative reversal by tracking prev/next. Used to restructure or traverse a list in O(1) extra space.", "Stack & Queue": "LIFO/FIFO structures for state that resolves in reverse order (bracket matching, RPN evaluation) or that must stay monotonic (next-greater-element, sliding window max). Used whenever you need O(1) access to the most recent or most extreme unresolved item.", "Trees": "Recursive divide-and-conquer traversal (DFS: preorder/inorder/postorder) or queue-driven level-by-level traversal (BFS). Used any time a problem on the whole tree decomposes cleanly into the same problem on its left and right subtrees.", "Binary Search": "Repeatedly halve a monotonic search space by testing the midpoint against a condition. Used not only on sorted arrays but on any 'answer space' where a yes/no predicate is monotonic — binary searching directly on the answer rather than an index.", "Heap / Priority Queue": "A binary heap keeps the current min or max accessible in O(1) with O(log n) insert/remove. Used for top-K problems, merging multiple sorted sequences, running medians, and greedy scheduling where you repeatedly need the current best or worst element.", "Graphs": "Traversal (BFS/DFS) over nodes and edges, extended with topological sort, multi-source BFS, and shortest-path algorithms like Dijkstra. Used for connectivity, ordering, and reachability questions on structures that aren't strictly hierarchical.", "Dynamic Programming": "Break a problem into overlapping subproblems, solve each exactly once, and reuse the result via memoization or a bottom-up table. Used when brute-force recursion keeps recomputing the same state and the problem has optimal substructure.", "Backtracking": "Incrementally build a candidate solution and abandon a branch the moment it can't possibly succeed. Used to enumerate all valid combinations, permutations, or placements, where early pruning avoids exploring the full search space.", "DP Concepts": "Foundational DP recurrences — knapsack variants, LCS, Catalan numbers — taught as reusable templates rather than tied to one specific problem. Used as building blocks you should recognize embedded inside more complex, disguised DP problems.", "Sorting Algorithms": "Classic comparison-based sorting via divide-and-conquer (merge sort) or partitioning around a pivot (quick sort). Less an interview 'pattern' and more a fundamental building block worth being able to implement correctly from memory.", "Union Find": "A disjoint-set data structure with path compression and union by rank tracks which elements belong to the same group. Used for dynamic connectivity questions — merging sets and answering 'are these two connected?' in near-O(1) amortized time.", "Trie": "A prefix tree where every root-to-node path spells out a string prefix. Used for prefix-based lookups — autocomplete, dictionary word search — where a hash set would otherwise require repeatedly re-hashing overlapping substrings.", "Cyclic Sort": "Place each number directly at its 'correct' index (value == index) by swapping, exploiting that values are known to fall in a fixed range like [1..n]. Used to find missing or duplicate numbers in O(n) time and O(1) space without sorting or a hash set.", "Bit Manipulation": "Manipulate individual bits directly with XOR/AND/OR/shifts. Used for parity and set-membership problems, or to simulate arithmetic without built-in operators — often reaching O(1) space where a hash set would need O(n).", "Greedy": "At each step, make the locally optimal choice without revisiting past decisions, trusting that a sequence of locally optimal choices yields a globally optimal result. Used when the problem provably has the greedy-choice property — worth sanity-checking with a small example before trusting it."};
 
-const content = document.getElementById('content');
+const content = document.getElementById('dsaContent');
 const searchInput = document.getElementById('searchInput');
 const diffFilter = document.getElementById('diffFilter');
 const emptyState = document.getElementById('emptyState');
@@ -625,6 +2509,23 @@ diffFilter.addEventListener('click', (e) => {
 totalCount.textContent = PROBLEMS.length;
 renderCatNav();
 render();
+
+})();
+</script>
+
+<script>
+(function(){
+  const navBtns = document.querySelectorAll(".site-nav-btn");
+  const pages = { cheatsheet: document.getElementById("page-cheatsheet"), dsavault: document.getElementById("page-dsavault") };
+  navBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const target = btn.dataset.page;
+      navBtns.forEach(b => b.classList.toggle("active", b === btn));
+      Object.keys(pages).forEach(key => pages[key].classList.toggle("hidden", key !== target));
+      window.scrollTo(0, 0);
+    });
+  });
+})();
 </script>
 </body>
 </html>
